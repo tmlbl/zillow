@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet href="http://www.eia.gov/rss/rss.xsl" type="text/xsl" media="screen"?>
+<rss version="2.0">
+
+<channel>
+      <title>EIA: Gasoline and Diesel Fuel Update</title>
+      <link>http://www.eia.gov/petroleum/gasdiesel/</link>
+      <description>U.S. Gasoline and Diesel Fuel Retail Prices Nationally and by Region.</description>
+      <language>en-us</language>
+ <image> <title>EIA logo</title> <url>http://www.eia.gov/global/images/logos/eia_logo_250.png</url>
+         <link>http://www.eia.gov/</link>
+         <description>US Energy Information Administration</description>
+      </image>
+ <item> <title>Data For 02/02/15</title>
+         <link>http://www.eia.gov/petroleum/gasdiesel/</link>
+         <pubDate>Mon, 02 Feb 2015 16:50:12 EST</pubDate>
+  		<description>
+		 	 							&lt;br&gt;		
+		Summary Excerpt:			 	&lt;br&gt;
+		 	 							&lt;br&gt;
+		Regular Gasoline Retail Price	&lt;br&gt;
+		(Dollars per Gallon)	 			&lt;br&gt;
+		2.068  .. U.S.  				&lt;br&gt;
+		2.088  ... East Coast  		&lt;br&gt;
+		2.145  .... New England  	&lt;br&gt;
+		2.178  .... Central Atlantic	&lt;br&gt;
+		2.004  .... Lower Atlantic	&lt;br&gt;
+		2.029 ... Midwest			&lt;br&gt;
+		1.860 ... Gulf Coast		&lt;br&gt;
+		1.867 ... Rocky Mountain	&lt;br&gt;
+		2.328 ... West Coast		&lt;br&gt;
+		2.133 ... West Coast less California&lt;br&gt;
+		 &lt;br&gt;
+
+		States&lt;br&gt;
+		2.441 .... California		&lt;br&gt;
+		1.871 .... Colorado		&lt;br&gt;
+		2.021 .... Florida		&lt;br&gt;
+		2.088 .... Massachusetts&lt;br&gt;
+		2.015 .... Minnesota&lt;br&gt;
+		2.350 .... New York&lt;br&gt;
+		2.035 .... Ohio&lt;br&gt;
+		1.856 .... Texas&lt;br&gt;
+		2.109 .... Washington&lt;br&gt;
+		 &lt;br&gt;
+    
+		Cities&lt;br&gt;
+		2.086 .... Boston&lt;br&gt;
+		2.263 .... Chicago&lt;br&gt;
+		2.053 .... Cleveland&lt;br&gt;
+		1.859 .... Denver&lt;br&gt;
+		1.818 .... Houston&lt;br&gt;
+		2.459 .... Los Angeles&lt;br&gt;
+		2.287 .... Miami&lt;br&gt;
+		2.116 .... New York City&lt;br&gt;
+		2.534 .... San Francisco&lt;br&gt;	
+		2.231 .... Seattle&lt;br&gt;	
+		
+		 &lt;br&gt;
+		 &lt;br&gt;
+		On-Highway Diesel Fuel Retail Price  &lt;br&gt;
+		 (Dollars  per Gallon) 			&lt;br&gt;
+		2.831  .. U.S.  				&lt;br&gt;
+		2.932  ... East Coast  		&lt;br&gt;
+		3.028  ....  New England  	&lt;br&gt;
+		3.041  ....  Central Atlantic	&lt;br&gt;
+		2.826 ....  Lower Atlantic	&lt;br&gt;
+		2.765 ... Midwest			&lt;br&gt;
+		2.769 ... Gulf Coast		&lt;br&gt;
+		2.783 ... Rocky Mountain	&lt;br&gt;
+		2.886 ... West Coast		&lt;br&gt;
+		2.716 ... West Coast less California&lt;br&gt;
+		3.027 .... California		&lt;br&gt;</description>	   
+      </item> 
+
+   </channel>
+</rss>

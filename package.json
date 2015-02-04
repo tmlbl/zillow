@@ -1,0 +1,21 @@
+{
+  "name": "zillow",
+  "version": "1.0.0",
+  "description": "hackathon",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/*.js"
+  },
+  "author": "github/tmlbl",
+  "devDependencies": {
+    "mocha": "^2.1.0"
+  },
+  "dependencies": {
+    "express": "^4.11.2",
+    "eyes": "^0.1.8",
+    "libxmljs": "^0.13.0",
+    "request": "^2.53.0",
+    "serve-static": "^1.8.1",
+    "xml2js": "^0.4.4"
+  }
+}
