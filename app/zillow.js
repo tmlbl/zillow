@@ -1,7 +1,4 @@
 var get = require('request').get,
-    util = require('util'),
-    url = require('url')
-    inspect = require('eyes').inspect,
     xml = require('libxmljs');
 
 function Zillow() { }
