@@ -1,4 +1,21 @@
-zillow
-======
+# zillow
+
 
 a little boilerplate for playing with some housing data
+
+
+## Maps
+
+### Installation of Required Tools
+
+1. NodeJs/npm (http://nodejs.org)
+2. tsd `sudo npm i -g tsd@next`
+3. grunt-cli `sudo npm i -g grunt-cli`
+4. TypeScript `sudo npm i -g typescript`
+
+### Getting Started
+1. cd into maps (cd path/to/zillow/www/maps)
+2. ./build.sh
+3. cd (../../)
+4. node server.js
+5. localhost:8080/maps/index.html

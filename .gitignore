@@ -1,7 +1,10 @@
 .idea/
+*.tmp.txt
+
 node_modules/
-*.d.ts
+
 www/maps/**/*.js
 *.js.map
+*.d.ts
 
 !www/maps/Gruntfile.js
