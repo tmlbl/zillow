@@ -8,3 +8,4 @@ www/maps/**/*.js
 *.d.ts
 
 !www/maps/Gruntfile.js
+test/data

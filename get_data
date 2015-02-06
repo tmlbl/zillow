@@ -1,0 +1,8 @@
+#!/bin/bash
+
+export FILE=FY2014_50_Final.xls
+
+wget http://www.huduser.org/portal/datasets/50thper/$FILE;
+mv $FILE test/data;
+node test/xls.js;
+
