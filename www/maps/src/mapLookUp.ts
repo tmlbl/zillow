@@ -2,6 +2,11 @@
 
 import React = require('react');
 import TR = require('typed-react');
+import $ = require('jquery');
+
+export interface MapAppProps {
+  map:google.maps.Map;
+}
 
 export interface MapAppStates {
   home:string;
@@ -16,7 +21,7 @@ export var codeAddress = (address:string, cb:(results:any, status:any)=>void) =>
   geocoder.geocode({'address': address}, cb)
 };
 
-export var calcRoute = (start:google.maps.LatLng, end:google.maps.LatLng, cb:(results:any, status:any)=>void ) => {
+export var calcRoute = (start:google.maps.LatLng, end:google.maps.LatLng, cb:(results:any, status:any)=>void) => {
   var request = {
     origin: start,
     destination: end,
@@ -25,18 +30,18 @@ export var calcRoute = (start:google.maps.LatLng, end:google.maps.LatLng, cb:(re
   directionsService.route(request, cb);
 };
 
-class App extends TR.Component<any,MapAppStates> {
+class App extends TR.Component<MapAppProps,MapAppStates> {
 
   getInitialState() {
     return {home: '1029 NE 94th ST, Seattle WA 98115', work: '1632 SE 254th ST Covington Wa', distance: ''};
   }
 
   addressCallBack(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
+    if (status == google.maps.GeocoderStatus.OK) {
 
-      } else {
-        alert('Geocode was not successful for the following reason: ' + status);
-      }
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
   }
 
   handleChange(e:Event) {
@@ -44,7 +49,7 @@ class App extends TR.Component<any,MapAppStates> {
       home = this.state.home,
       work = this.state.work;
 
-    switch (input.name){
+    switch (input.name) {
       case 'home':
         home = input.value;
         break;
@@ -54,27 +59,29 @@ class App extends TR.Component<any,MapAppStates> {
     }
 
     this.setState({
-      home:home,
-      work:work,
-      distance:this.state.distance
+      home: home,
+      work: work,
+      distance: this.state.distance
     })
   }
 
   submit(e:Event) {
     var home:any = document.getElementsByName('home')[0],
-      work:any = document.getElementsByName('work')[0];
-    var me = this;
-    codeAddress(home.value, (results:any,status:any)=>{
+      work:any = document.getElementsByName('work')[0],
+      me = this;
+
+    var submitCb = (results:any, status:any)=> {
       var homeLatLng:any = null,
         workLatLng:any = null;
-      if(status== google.maps.GeocoderStatus.OK){
+      if (status == google.maps.GeocoderStatus.OK) {
         homeLatLng = results;
         console.log(results);
-        codeAddress(work.value, (results:any,status:any)=>{
-          if(status== google.maps.GeocoderStatus.OK){
+        codeAddress(work.value, (results:any, status:any)=> {
+          if (status == google.maps.GeocoderStatus.OK) {
             workLatLng = results;
-            calcRoute(homeLatLng[0].geometry.location, workLatLng[0].geometry.location, (results:any, status:any)=>{
-              if(status== google.maps.GeocoderStatus.OK) {
+            calcRoute(homeLatLng[0].geometry.location, workLatLng[0].geometry.location, (results:any, status:any)=> {
+              $(document).trigger('map:NewDirections',[results]);
+              if (status == google.maps.GeocoderStatus.OK) {
                 me.setState({
                   home: this.state.home,
                   work: this.state.work,
@@ -83,10 +90,10 @@ class App extends TR.Component<any,MapAppStates> {
               }
             });
           }
-        } )
+        })
       }
-    });
-
+    };
+    codeAddress(home.value, submitCb)
   }
 
   clearAndFocusInput() {
@@ -100,13 +107,15 @@ class App extends TR.Component<any,MapAppStates> {
   }
 
   componentDidMount() {
-    setTimeout(()=>{document.getElementById('home').focus()},0)
+    setTimeout(()=> {
+      document.getElementById('home').focus()
+    }, 0)
   }
 
   render() {
     var distance:any = null;
-    if(this.state.distance !== ''){
-      distance = React.createElement('div', {className:'distance'},'The Distance you entered is: ' + this.state.distance);
+    if (this.state.distance !== '') {
+      distance = React.createElement('div', {className: 'distance'}, 'The Distance you entered is: ' + this.state.distance);
     }
     return (
       React.createElement("div", {className: 'form-body'}, [
@@ -115,8 +124,8 @@ class App extends TR.Component<any,MapAppStates> {
             React.createElement("input", {
                 ref: "home",
                 type: 'address',
-                id:'home',
-                name:'home',
+                id: 'home',
+                name: 'home',
                 value: this.state.home,
                 onChange: this.handleChange
               }
@@ -127,8 +136,8 @@ class App extends TR.Component<any,MapAppStates> {
             React.createElement("input", {
                 ref: "work",
                 type: 'address',
-                id:'work',
-                name:'work',
+                id: 'work',
+                name: 'work',
                 value: this.state.work,
                 onChange: this.handleChange
               }

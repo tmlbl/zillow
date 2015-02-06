@@ -3,17 +3,14 @@
 import React = require('react');
 import TR = require('typed-react');
 
-import Map = require('./mapLookUp');
-
-var directionsService;
-var geocoder;
-var map;
+import MapLookUp = require('./mapLookUp');
+import Map = require('./map');
 
 function initialize() {
-  directionsService = new google.maps.DirectionsService();
-  geocoder = new google.maps.Geocoder();
+  Map.example(document.getElementById('content'), ()=>{
+    React.render(React.createElement(MapLookUp.MapApp, {className: 'direction-forms'}), document.getElementById('form'));
+  });
 
-  React.render(React.createElement(Map.MapApp, {className: 'direction-forms'}), document.body);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
