@@ -1,0 +1,19 @@
+
+
+.fa-check-toggle-enter {
+    opacity: 0.01;
+    transition: opacity .3s ease-in;
+}
+
+.fa-check-toggle-enter.fa-check-toggle-enter-active {
+    opacity: 1;
+}
+
+.fa-check-toggle-leave {
+    opacity: 1;
+    transition: opacity .3s ease-in;
+}
+
+.fa-check-toggle-leave.fa-check-toggle-leave-active {
+    opacity: 0.01;
+}
