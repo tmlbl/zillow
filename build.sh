@@ -1,4 +1,4 @@
 #!/bin/sh -e
 npm i || sudo npm i &&
-tsd reinstall -so ||
+tsd reinstall -so &&
 grunt
