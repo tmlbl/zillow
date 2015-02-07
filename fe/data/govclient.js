@@ -38,8 +38,9 @@ GovClient.prototype.where = function (clause, cb) {
   this.query({ where: clause }, cb);
 };
 
-GovClient.prototype.near = function (coords, cb) {
-
+GovClient.prototype.near = function (geometry, cb) {
+  var lat = geometry.coordinates[0];
+  var lon = geometry.coordinates[1];
 };
 
 function form(query) {

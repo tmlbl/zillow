@@ -5,15 +5,13 @@ var GovClient = require('data/govclient'),
 
 Data.getProjects = function (cb) {
   new GovClient(GovClient.LIHTC).where('PROJ_CTY=\'Seattle\'', function (err, result) {
-    var filtered = _.map(result.features, function (datum) {
-      console.log(datum);
+    cb(_.map(result.features, function (datum) {
       return {
         name: datum.properties['PROJECT'],
         number: datum.properties['CO_TEL'],
         geometry: datum.geometry
       };
-    });
-    cb(filtered);
+    }));
   });
 };
 
