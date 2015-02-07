@@ -1,12 +1,3 @@
-// SmoothScroll v0.9.9
-// Licensed under the terms of the MIT license.
-
-// People involved
-// - Balazs Galambosi: maintainer (CHANGELOG.txt)
-// - Patrick Brunner (patrickb1991@gmail.com)
-// - Michael Herf: ssc_pulse Algorithm
-
-function ssc_init(){if(!document.body)return;var e=document.body;var t=document.documentElement;var n=window.innerHeight;var r=e.scrollHeight;ssc_root=document.compatMode.indexOf("CSS")>=0?t:e;ssc_activeElement=e;ssc_initdone=true;if(top!=self){ssc_frame=true}else if(r>n&&(e.offsetHeight<=n||t.offsetHeight<=n)){ssc_root.style.height="auto";if(ssc_root.offsetHeight<=n){var i=document.createElement("div");i.style.clear="both";e.appendChild(i)}}if(!ssc_fixedback){e.style.backgroundAttachment="scroll";t.style.backgroundAttachment="scroll"}if(ssc_keyboardsupport){ssc_addEvent("keydown",ssc_keydown)}}function ssc_scrollArray(e,t,n,r){r||(r=1e3);ssc_directionCheck(t,n);ssc_que.push({x:t,y:n,lastX:t<0?.99:-.99,lastY:n<0?.99:-.99,start:+(new Date)});if(ssc_pending){return}var i=function(){var s=+(new Date);var o=0;var u=0;for(var a=0;a<ssc_que.length;a++){var f=ssc_que[a];var l=s-f.start;var c=l>=ssc_animtime;var h=c?1:l/ssc_animtime;if(ssc_pulseAlgorithm){h=ssc_pulse(h)}var p=f.x*h-f.lastX>>0;var d=f.y*h-f.lastY>>0;o+=p;u+=d;f.lastX+=p;f.lastY+=d;if(c){ssc_que.splice(a,1);a--}}if(t){var v=e.scrollLeft;e.scrollLeft+=o;if(o&&e.scrollLeft===v){t=0}}if(n){var m=e.scrollTop;e.scrollTop+=u;if(u&&e.scrollTop===m){n=0}}if(!t&&!n){ssc_que=[]}if(ssc_que.length){setTimeout(i,r/ssc_framerate+1)}else{ssc_pending=false}};setTimeout(i,0);ssc_pending=true}function ssc_wheel(e){if(!ssc_initdone){ssc_init()}var t=e.target;var n=ssc_overflowingAncestor(t);if(!n||e.defaultPrevented||ssc_isNodeName(ssc_activeElement,"embed")||ssc_isNodeName(t,"embed")&&/\.pdf/i.test(t.src)){return true}var r=e.wheelDeltaX||0;var i=e.wheelDeltaY||0;if(!r&&!i){i=e.wheelDelta||0}if(Math.abs(r)>1.2){r*=ssc_stepsize/120}if(Math.abs(i)>1.2){i*=ssc_stepsize/120}ssc_scrollArray(n,-r,-i);e.preventDefault()}function ssc_keydown(e){var t=e.target;var n=e.ctrlKey||e.altKey||e.metaKey;if(/input|textarea|embed/i.test(t.nodeName)||t.isContentEditable||e.defaultPrevented||n){return true}if(ssc_isNodeName(t,"button")&&e.keyCode===ssc_key.spacebar){return true}var r,i=0,s=0;var o=ssc_overflowingAncestor(ssc_activeElement);var u=o.clientHeight;if(o==document.body){u=window.innerHeight}switch(e.keyCode){case ssc_key.up:s=-ssc_arrowscroll;break;case ssc_key.down:s=ssc_arrowscroll;break;case ssc_key.spacebar:r=e.shiftKey?1:-1;s=-r*u*.9;break;case ssc_key.pageup:s=-u*.9;break;case ssc_key.pagedown:s=u*.9;break;case ssc_key.home:s=-o.scrollTop;break;case ssc_key.end:var a=o.scrollHeight-o.scrollTop-u;s=a>0?a+10:0;break;case ssc_key.left:i=-ssc_arrowscroll;break;case ssc_key.right:i=ssc_arrowscroll;break;default:return true}ssc_scrollArray(o,i,s);e.preventDefault()}function ssc_mousedown(e){ssc_activeElement=e.target}function ssc_setCache(e,t){for(var n=e.length;n--;)ssc_cache[ssc_uniqueID(e[n])]=t;return t}function ssc_overflowingAncestor(e){var t=[];var n=ssc_root.scrollHeight;do{var r=ssc_cache[ssc_uniqueID(e)];if(r){return ssc_setCache(t,r)}t.push(e);if(n===e.scrollHeight){if(!ssc_frame||ssc_root.clientHeight+10<n){return ssc_setCache(t,document.body)}}else if(e.clientHeight+10<e.scrollHeight){overflow=getComputedStyle(e,"").getPropertyValue("overflow");if(overflow==="scroll"||overflow==="auto"){return ssc_setCache(t,e)}}}while(e=e.parentNode)}function ssc_addEvent(e,t,n){window.addEventListener(e,t,n||false)}function ssc_removeEvent(e,t,n){window.removeEventListener(e,t,n||false)}function ssc_isNodeName(e,t){return e.nodeName.toLowerCase()===t.toLowerCase()}function ssc_directionCheck(e,t){e=e>0?1:-1;t=t>0?1:-1;if(ssc_direction.x!==e||ssc_direction.y!==t){ssc_direction.x=e;ssc_direction.y=t;ssc_que=[]}}function ssc_pulse_(e){var t,n,r;e=e*ssc_pulseScale;if(e<1){t=e-(1-Math.exp(-e))}else{n=Math.exp(-1);e-=1;r=1-Math.exp(-e);t=n+r*(1-n)}return t*ssc_pulseNormalize}function ssc_pulse(e){if(e>=1)return 1;if(e<=0)return 0;if(ssc_pulseNormalize==1){ssc_pulseNormalize/=ssc_pulse_(1)}return ssc_pulse_(e)}var ssc_framerate=250;var ssc_animtime=900;var ssc_stepsize=150;var ssc_pulseAlgorithm=true;var ssc_pulseScale=6;var ssc_pulseNormalize=1;var ssc_keyboardsupport=true;var ssc_arrowscroll=50;var ssc_frame=false;var ssc_direction={x:0,y:0};var ssc_initdone=false;var ssc_fixedback=true;var ssc_root=document.documentElement;var ssc_activeElement;var ssc_key={left:37,up:38,right:39,down:40,spacebar:32,pageup:33,pagedown:34,end:35,home:36};var ssc_que=[];var ssc_pending=false;var ssc_cache={};setInterval(function(){ssc_cache={}},10*1e3);var ssc_uniqueID=function(){var e=0;return function(t){return t.ssc_uniqueID||(t.ssc_uniqueID=e++)}}();var ischrome=/chrome/.test(navigator.userAgent.toLowerCase());if(ischrome){ssc_addEvent("mousedown",ssc_mousedown);ssc_addEvent("mousewheel",ssc_wheel);ssc_addEvent("load",ssc_init)}
 /*
  * jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/
 */
@@ -20,7 +11,7 @@ jQuery.easing.jswing=jQuery.easing.swing;jQuery.extend(jQuery.easing,{def:"easeO
 * This software may be used freely on commercial and non-commercial projects with attribution to the author/copyright holder.
 * Author: Patrick Kunka
 * Copyright 2012-2013 Patrick Kunka, Barrel LLC, All Rights Reserved
-* 
+*
 * http://mixitup.io
 */
 (function(e){function q(c,b,g,d,a){function k(){l.unbind("webkitTransitionEnd transitionend otransitionend oTransitionEnd");b&&w(b,g,d,a);a.startOrder=[];a.newOrder=[];a.origSort=[];a.checkSort=[];r.removeStyle(a.prefix+"filter, filter, "+a.prefix+"transform, transform, opacity, display").css(a.clean).removeAttr("data-checksum");window.atob||r.css({display:"none",opacity:"0"});l.removeStyle(a.prefix+"transition, transition, "+a.prefix+"perspective, perspective, "+a.prefix+"perspective-origin, perspective-origin, "+
@@ -146,11 +137,11 @@ f.style||"OPerspective"in f.style||"MsPerspective"in f.style||"perspective"in f.
 f||"msTransition"in f||"MsTransition"in f||"OTransition"in f}()},browser:{ie8:function(){var f=-1;"Microsoft Internet Explorer"==navigator.appName&&null!=/MSIE ([0-9]{1,}[.0-9]{0,})/.exec(navigator.userAgent)&&(f=parseFloat(RegExp.$1));return-1!=f&&9>f}(),ie10:window.navigator.msPointerEnabled}};(window.jQuery||window.Zepto)&&function(f){f.fn.swiper=function(b){b=new Swiper(f(this)[0],b);f(this).data("swiper",b);return b}}(window.jQuery||window.Zepto);
 "undefined"!==typeof module&&(module.exports=Swiper);
 /*global jQuery */
-/*!	
+/*!
 * Lettering.JS 0.6.1
 *
 * Copyright 2010, Dave Rupert http://daverupert.com
-* Released under the WTFPL license 
+* Released under the WTFPL license
 * http://sam.zoy.org/wtfpl/
 *
 * Thanks to Paul Irish - http://paulirish.com - for the feedback.
@@ -167,7 +158,7 @@ f||"msTransition"in f||"MsTransition"in f||"OTransition"in f}()},browser:{ie8:fu
  */
 
 (function ($) {
-  "use strict"; 
+  "use strict";
 
   function isInEffect (effect) {
     return /In/.test(effect) || $.inArray(effect, $.fn.textillate.defaults.inEffects) >= 0;
@@ -222,14 +213,14 @@ f||"msTransition"in f||"MsTransition"in f||"OTransition"in f}()},browser:{ie8:fu
     if (!count) {
       cb && cb();
       return;
-    } 
+    }
 
     if (options.shuffle) $chars = shuffle($chars);
     if (options.reverse) $chars = $chars.toArray().reverse();
 
     $.each($chars, function (i, c) {
       var $char = $(c);
-      
+
       function complete () {
         if (isInEffect(options.effect)) {
           $char.css('visibility', 'visible');
@@ -242,7 +233,7 @@ f||"msTransition"in f||"MsTransition"in f||"OTransition"in f}()},browser:{ie8:fu
 
       var delay = options.sync ? options.delay : options.delay * i * options.delayScale;
 
-      $char.text() ? 
+      $char.text() ?
         setTimeout(function () { animate($char, options.effect, complete) }, delay) :
         complete();
     });
@@ -254,7 +245,7 @@ f||"msTransition"in f||"MsTransition"in f||"OTransition"in f}()},browser:{ie8:fu
 
     base.init = function () {
       base.$texts = $element.find(options.selector);
-      
+
       if (!base.$texts.length) {
         base.$texts = $('<ul class="texts"><li>' + $element.html() + '</li></ul>');
         $element.html(base.$texts);
@@ -291,7 +282,7 @@ f||"msTransition"in f||"MsTransition"in f||"OTransition"in f}()},browser:{ie8:fu
 
     base.in = function (index, cb) {
       index = index || 0;
-       
+
       var $elem = base.$texts.find(':nth-child(' + (index + 1) + ')')
         , options = $.extend({}, base.options, getData($elem))
         , $chars;
@@ -305,7 +296,7 @@ f||"msTransition"in f||"MsTransition"in f||"OTransition"in f}()},browser:{ie8:fu
         .lettering('words');
 
       base.$current.find('[class^="word"]')
-          .css({ 
+          .css({
             'display': 'inline-block',
             // fix for poor ios performance
             '-webkit-transform': 'translate3d(0,0,0)',
@@ -357,7 +348,7 @@ f||"msTransition"in f||"MsTransition"in f||"OTransition"in f}()},browser:{ie8:fu
           var length = base.$texts.children().length;
 
           index += 1;
-          
+
           if (!base.options.loop && index >= length) {
             if (base.options.callback) base.options.callback();
             base.triggerEvent('end');
@@ -383,7 +374,7 @@ f||"msTransition"in f||"MsTransition"in f||"OTransition"in f}()},browser:{ie8:fu
         , data = $this.data('textillate')
         , options = $.extend(true, {}, $.fn.textillate.defaults, getData(this), typeof settings == 'object' && settings);
 
-      if (!data) { 
+      if (!data) {
         $this.data('textillate', (data = new Textillate(this, options)));
       } else if (typeof settings == 'string') {
         data[settings].apply(data, [].concat(args));
@@ -392,7 +383,7 @@ f||"msTransition"in f||"MsTransition"in f||"OTransition"in f}()},browser:{ie8:fu
       }
     })
   };
-  
+
   $.fn.textillate.defaults = {
     selector: '.texts',
     loop: false,
@@ -442,7 +433,7 @@ f||"msTransition"in f||"MsTransition"in f||"OTransition"in f}()},browser:{ie8:fu
 
 /*
  *	jQuery OwlCarousel v1.28
- *  
+ *
  *	Copyright (c) 2013 Bartosz Wojciechowski
  *	http://www.owlgraphic.com/owlcarousel
  *
