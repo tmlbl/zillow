@@ -5,6 +5,7 @@
 node_modules/
 
 fe/*.js
+fe/**/*.js
 www/*.js
 *.js.map
 *.d.ts

@@ -5,53 +5,24 @@ import TR = require('typed-react');
 import _ = require('lodash');
 import $ = require('jquery');
 
-export interface SvgSymbol {
-  id: string;
-  path: string;
-  fillColor: string;
-  fillOpacity: number;
-  scale: number
-  strokeColor: string;
-  strokeWeight: number
-}
+import Places = require('./places');
 
-var SYMBOLS =
-{
-  star: {
-    path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
-    fillColor: 'green',
-    fillOpacity: 0.8,
-    scale: .1,
-    strokeColor: 'gold',
-    strokeWeight: 3
-  }
-};
+declare var MarkerWithLabel:any;
 
 export interface MarkerData {
-  //required
-  position: google.maps.LatLng;
   id:string;
-
-  //optional
-  animation?: google.maps.Animation;
-  clickable?: boolean;
-  cursor?: string;
-  draggable?: boolean;
-  flat?: boolean;
-  iconId?:string;//key to our symbols saved here
-  icon?: any;
-  map?: any;
-  optimized?: boolean;
-  raiseOnDrag?: boolean;
-  shadow?: any;
-  shape?: google.maps.MarkerShape;
-  title?: string;
-  visible?: boolean;
-  zIndex?: number;
+  position: google.maps.LatLng;
+  draggable: boolean;
+  raiseOnDrag: boolean;
+  icon: string;
+  //map: google.maps.Map;
+  labelContent: string;//'<i class="fa fa-send fa-3x" style="color:rgba(153,102,102,0.8);"></i>',
+  labelAnchor: google.maps.Point;
+  labelClass: string; // the CSS class for the label
 }
 
 export interface Marker {
-  marker: google.maps.Marker;
+  marker: any;
   id: string;
 }
 
@@ -79,8 +50,9 @@ class ReactMap extends TR.Component<MapProps,MapState> {
 
   private markers:Marker[] = [];
   private directionsDisplay = new google.maps.DirectionsRenderer();
-  private centerLat:number;
-  private centerLng:number;
+  private places:Places.MapPlaceRequest = null;
+  private centerLat:number = null;
+  private centerLng:number = null;
 
   static defaultStyle = {
     height: '500px',
@@ -101,7 +73,7 @@ class ReactMap extends TR.Component<MapProps,MapState> {
       //add it to our map
       props.map = this.state.gMap;
       this.markers.push({
-        marker: new google.maps.Marker(props),
+        marker: new MarkerWithLabel(props),
         id: m.id
       })
     }
@@ -134,6 +106,7 @@ class ReactMap extends TR.Component<MapProps,MapState> {
     setTimeout(()=> {
       var gMap:google.maps.Map = new google.maps.Map(this.getDOMNode(), mapOptions);
       this.directionsDisplay.setMap(gMap);
+      this.places = new Places.MapPlaceRequest(gMap);
       this.setState({
         gMap: gMap,
         style: this.state.style
@@ -166,7 +139,12 @@ export var example = (el:HTMLElement, cb?:() => void) => {
   var mData:MarkerData = {
     position: new google.maps.LatLng(-25.363882, 131.044922),
     id: 'marker-1',
-    icon: SYMBOLS.star
+    draggable: false,
+    raiseOnDrag: false,
+    icon: ' ',
+    labelContent: '<i class="fa fa-send fa-3x" style="color:rgba(153,102,102,0.8);"></i>',
+    labelAnchor: new google.maps.Point(0,0),
+    labelClass: 'marker' // the CSS class for the label
   };
   React.render(React.createElement(Map, {
     mData: [mData],

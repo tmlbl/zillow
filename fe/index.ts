@@ -5,6 +5,7 @@ import TR = require('typed-react');
 
 import MapLookUp = require('maps/mapLookUp');
 import Map = require('maps/map');
+import Places = require('maps/places');
 
 function initialize() {
   Map.example(document.getElementById('content'), ()=>{
