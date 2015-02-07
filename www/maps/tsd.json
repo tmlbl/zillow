@@ -10,6 +10,15 @@
     },
     "react/react.d.ts": {
       "commit": "8e614160f9ddea13d7b78607df39ac931e233090"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "30cfe7dedb3ae990a369cda93995d69b169465bd"
+    },
+    "moment/moment.d.ts": {
+      "commit": "30cfe7dedb3ae990a369cda93995d69b169465bd"
+    },
+    "lodash/lodash.d.ts": {
+      "commit": "9861ba85fd1774dceaa6b245a9dbfaa300bf10f1"
     }
   }
 }
