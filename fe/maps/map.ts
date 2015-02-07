@@ -75,8 +75,14 @@ class ReactMap extends TR.Component<MapProps,MapState> {
       this.markers.push({
         marker: new MarkerWithLabel(props),
         id: m.id
-      })
+      });
     }
+  }
+
+  feedMarkerData(markers:any) {
+    markers.forEach(function (marker) {
+      this.generateMarker(marker);
+    });
   }
 
   mapCenterLatLng() {
@@ -101,7 +107,9 @@ class ReactMap extends TR.Component<MapProps,MapState> {
       center: this.mapCenterLatLng(),
       zoom: this.props.mapOptions.zoom
     };
+
     $(document).on('map:NewDirections',this.displayDirections);
+    $(document).on('markerData', this.feedMarkerData);
 
     setTimeout(()=> {
       var gMap:google.maps.Map = new google.maps.Map(this.getDOMNode(), mapOptions);
@@ -134,10 +142,10 @@ export var Map = TR.createClass(ReactMap);
 export var example = (el:HTMLElement, cb?:() => void) => {
   var mapOptions = {
     zoom: 4,
-    center: new google.maps.LatLng(-25.363882, 131.044922)
+    center: new google.maps.LatLng(47.6097, -122.3331)
   };
   var mData:MarkerData = {
-    position: new google.maps.LatLng(-25.363882, 131.044922),
+    position: new google.maps.LatLng(47.6097, -122.331),
     id: 'marker-1',
     draggable: false,
     raiseOnDrag: false,

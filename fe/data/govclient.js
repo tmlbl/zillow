@@ -25,6 +25,15 @@ GovClient.AffordabilityIndex = 'http://services' +
 GovClient.MultiFamily = 'http://services.arcgis.com/VTy' +
   'Q9soqVukalItT/arcgis/rest/services/MultiFamilyPropertie' +
   's/FeatureServer/0/query?';
+GovClient.PublicHousing = 'http://services.arcgis.com/' +
+  'VTyQ9soqVukalItT/arcgis/rest/services/PublicHousingBuildings' +
+  '/FeatureServer/0/query?';
+GovClient.HousingAuthorities = 'http://services.arcgis.com/' +
+  'VTyQ9soqVukalItT/arcgis/rest/services/' +
+  'PublicHousingAuthorities/FeatureServer/0/query?';
+GovClient.HousingCounseling = 'http://services.arcgis.com/' +
+  'VTyQ9soqVukalItT/arcgis/rest/services/' +
+  'All_Active-WA-Feb2015/FeatureServer/0/query?';
 
 GovClient.prototype.query = function (query, cb) {
   var url = this.url + form(query);
