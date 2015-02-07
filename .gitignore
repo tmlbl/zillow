@@ -5,10 +5,13 @@
 node_modules/
 
 fe/*.js
-fe/**/*.js
+src/*.js
+fe/maps/*.js
+fe/index.js
 www/*.js
 *.js.map
 *.d.ts
+assets/js/
 
 !Gruntfile.js
 test/data
