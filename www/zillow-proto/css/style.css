@@ -101,6 +101,9 @@ p {
 	line-height:21px;
 	font-family: Raleway, Open Sans, Arial, sans-serif;
 }
+.underline {
+	text-decoration: underline;
+}
 /* ---------Page preload--------------------------------------*/
 #jpreOverlay {
 	background: #fff;
@@ -598,7 +601,7 @@ nav .active span {
 	z-index:1;
 	background-size: cover !important;
 	-webkit-background-size:cover !important;
-	background-attachment: scroll!important;
+	background-attachment: scroll !important;
 	background-position: center;
 	display:none;
 }
@@ -609,7 +612,23 @@ nav .active span {
 	height: 100%;
 	position: absolute;
 	display:block;
+	visibility: hidden;
 	z-index:-12;
+	opacity: 0;
+}
+.sepia {
+	-webkit-filter: grayscale(90%) !important;
+	-moz-filter: grayscale(90%) !important;
+	-ms-filter: grayscale(90%) !important;
+	-o-filter: grayscale(90%) !important;
+	filter: grayscale(90%) !important;
+}
+.desaturate {
+	-webkit-filter: grayscale(100%) !important;
+	-moz-filter: grayscale(100%) !important;
+	-ms-filter: grayscale(100%) !important;
+	-o-filter: grayscale(100%) !important;
+	filter: grayscale(100%) !important;
 }
 /*------ footer - ------------------------------------------------*/
 footer{

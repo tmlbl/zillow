@@ -46,90 +46,90 @@ equalheight = function(container){
 
 // functions   ----------------------------------------
 function initHackathon() {
-    "use strict";
-	 // Author code here
-
-   $('#video-container').css("visibility", "visible").fadeTo( "slow" , 0.68, function() {
+  "use strict";
+  // Author code here
+  $('#video-container').fadeTo(300, 0.69, function() {
      // Animation complete.
-   });
+     $(this).css("visibility", "visible");
+  });
 
-    var a = new Swiper(".swiper-container", {
-        speed: 1e3,
-        initialSlide: 0,
-        onSlideChangeStart: function(b) {
-            $("nav .active").removeClass("active");
-            $("nav  a").eq(a.activeIndex).addClass("active");
-            $(".container").animate({
-                scrollTop: 0
-            }, {
-                queue: false,
-                duration: 1,
-                easing: "easeInOutQuad"
-            });
-            var d = $(window).width();
-            if (d < 979) setTimeout(function() {
-                c();
-            }, 600);
-            if (1 == b.activeIndex) setTimeout(function() {
-                $(".scroll-nav").animate({
-                    right: "-50px"
-                });
-                $(".scroll-nav a").each(function(a) {
-                    var b = $(this);
-                    setTimeout(function() {
-                        b.animate({
-                            right: "-50px"
-                        }, {
-                            queue: false,
-                            duration: 500,
-                            easing: "easeInOutQuart"
-                        });
-                    }, 250 * a);
-                });
-            }, 1e3); else {
-                $(".scroll-nav").animate({
-                    right: "-150px"
-                });
-                $(".scroll-nav a").each(function(a) {
-                    var b = $(this);
-                    setTimeout(function() {
-                        b.animate({
-                            right: "-50px"
-                        }, 300);
-                    }, 150 * a);
-                });
-            }
-        }
-    });
-    $("nav  a.swp").on("touchstart mousedown", function(b) {
-        b.preventDefault();
-        $("nav .active").removeClass("active");
-        $(this).addClass("active");
-        a.swipeTo($(this).index());
-    });
-    $("nav  a.swp").click(function(a) {
-        a.preventDefault();
-    });
-    $(".start-button").click(function(b) {
-        b.preventDefault();
-        a.swipeTo(1);
-    });
-    $(".gw").click(function(b) {
-        b.preventDefault();
-        a.swipeTo(2);
-    });
-    $(".go-contact").click(function(b) {
-        b.preventDefault();
-        a.swipeTo(3);
-    });
-    $(".arrow-left").on("click", function(b) {
-        b.preventDefault();
-        a.swipePrev();
-    });
-    $(".arrow-right").on("click", function(b) {
-        b.preventDefault();
-        a.swipeNext();
-    });
+  var a = new Swiper(".swiper-container", {
+      speed: 1e3,
+      initialSlide: 0,
+      onSlideChangeStart: function(b) {
+          $("nav .active").removeClass("active");
+          $("nav  a").eq(a.activeIndex).addClass("active");
+          $(".container").animate({
+              scrollTop: 0
+          }, {
+              queue: false,
+              duration: 1,
+              easing: "easeInOutQuad"
+          });
+          var d = $(window).width();
+          if (d < 979) setTimeout(function() {
+              c();
+          }, 600);
+          if (1 == b.activeIndex) setTimeout(function() {
+              $(".scroll-nav").animate({
+                  right: "-50px"
+              });
+              $(".scroll-nav a").each(function(a) {
+                  var b = $(this);
+                  setTimeout(function() {
+                      b.animate({
+                          right: "-50px"
+                      }, {
+                          queue: false,
+                          duration: 500,
+                          easing: "easeInOutQuart"
+                      });
+                  }, 250 * a);
+              });
+          }, 1e3); else {
+              $(".scroll-nav").animate({
+                  right: "-150px"
+              });
+              $(".scroll-nav a").each(function(a) {
+                  var b = $(this);
+                  setTimeout(function() {
+                      b.animate({
+                          right: "-50px"
+                      }, 300);
+                  }, 150 * a);
+              });
+          }
+      }
+  });
+  $("nav  a.swp").on("touchstart mousedown", function(b) {
+      b.preventDefault();
+      $("nav .active").removeClass("active");
+      $(this).addClass("active");
+      a.swipeTo($(this).index());
+  });
+  $("nav  a.swp").click(function(a) {
+      a.preventDefault();
+  });
+  $(".start-button").click(function(b) {
+      b.preventDefault();
+      a.swipeTo(1);
+  });
+  $(".gw").click(function(b) {
+      b.preventDefault();
+      a.swipeTo(2);
+  });
+  $(".go-contact").click(function(b) {
+      b.preventDefault();
+      a.swipeTo(3);
+  });
+  $(".arrow-left").on("click", function(b) {
+      b.preventDefault();
+      a.swipePrev();
+  });
+  $(".arrow-right").on("click", function(b) {
+      b.preventDefault();
+      a.swipeNext();
+  });
 // scroll nav   ----------------------------------------
     $(".scroll-nav a").bind("click", function(a) {
         a.preventDefault();
