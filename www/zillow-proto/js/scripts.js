@@ -314,7 +314,7 @@ function initHackathon() {
         return false;
     });
 // owl carousel   ----------------------------------------
-    var d = $("#about-slider");
+    /*var d = $("#about-slider");
     d.owlCarousel({
         navigation: false,
         slideSpeed: 500,
@@ -410,7 +410,7 @@ function initHackathon() {
     });
     $(".slide-holder .prev-slide").click(function() {
          prsls.trigger("owl.prev");
- 	});
+ 	});*/
 // Contact form  ----------------------------------------
     $("#contactform").submit(function() {
         var a = $(this).attr("action");
