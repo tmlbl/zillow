@@ -163,10 +163,11 @@ export var example = (el:HTMLElement, cb?:() => void) => {
       }
     },
     {
-      id: 'grocery',
+      id: 'Housing Counseling',
       src: 'shopping-cart',
       onClick: ()=> {
-        console.log('grocery');
+        console.log('Loading housing counseling data...');
+        mapData.mapHousingCounseling();
       }
     },
     {
