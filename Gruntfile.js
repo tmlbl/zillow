@@ -29,6 +29,16 @@ module.exports = function (grunt) {
                         bundle.plugin('tsify', { });
                     }
                 }
+            },
+            data: {
+                src: 'fe/data.js',
+                dest: 'www/data.js',
+                options:{
+                    browserifyOptions: {
+                        paths:['node_modules','fe/'],
+                        debug: true
+                    }
+                }
             }
         },
         watch: {
@@ -43,6 +53,17 @@ module.exports = function (grunt) {
                     'fe/**/*.ts'
                 ],
                 tasks: ['ts', 'browserify:dist']
+            },
+            data: {
+                options: {
+                    livereload: true
+                },
+                files: [
+                    'fe/data/*.js',
+                    'fe/data.js',
+                    'www/index.html'
+                ],
+                tasks: ['browserify:data']
             }
         },
         ts: {
@@ -57,7 +78,8 @@ module.exports = function (grunt) {
 
     // Load the npm installed tasks
 
-    grunt.registerTask('default', ['ts', 'browserify:dist','watch']);
+    grunt.registerTask('default', ['ts', 'browserify:dist', 'watch']);
+    grunt.registerTask('data', ['browserify:data', 'watch']);
     grunt.registerTask('build', ['ts', 'browserify:dist']);
 
 };

@@ -1,5 +1,5 @@
 var geojson = require('geojson'),
-    req = require('request'),
+    req = require('browser-request'),
     qs = require('qs');
 
 // Default base url for querying LIHTC
@@ -12,19 +12,25 @@ function queryDefaults() {
     outFields: '*',
     f: 'geojson'
   }
-};
+}
 
 function GovClient(url) {
   this.url = url || defaultUrl;
 }
 
 GovClient.LIHTC = defaultUrl;
+GovClient.AffordabilityIndex = 'http://services' +
+  '.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/' +
+  'LocationAffordabilityIndexData/FeatureServer/0/query?';
+GovClient.MultiFamily = 'http://services.arcgis.com/' +
+  'VTyQ9soqVukalItT/arcgis/rest/services/FairMarketRent' +
+  's/FeatureServer/0/query?';
 
 GovClient.prototype.query = function (query, cb) {
   var url = this.url + form(query);
   console.log('Requesting URL', url);
   req.get(url, function (err, result, body) {
-    cb(err, body);
+    cb(err, JSON.parse(body));
   });
 };
 
@@ -39,9 +45,5 @@ function form(query) {
   });
   return qs.stringify(result);
 }
-
-new GovClient().where('PROJ_CTY=\'Seattle\'', function (err, body) {
-  console.dir(body);
-});
 
 module.exports = GovClient;
