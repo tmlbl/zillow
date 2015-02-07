@@ -64,24 +64,18 @@ class ReactMap extends TR.Component<MapProps,MapState> {
   }
 
   generateMarker(m:MarkerData) {
-    var itExists = _.find(this.markers, (marker:Marker) => {
-      return m.id == marker.id;
-    });
-
-    if (!itExists) {
-      var props:any = m;
-      //add it to our map
-      props.map = this.state.gMap;
+      var mark = new MarkerWithLabel(m).setMap(this.state.gMap);
       this.markers.push({
-        marker: new MarkerWithLabel(props),
+        marker: mark,
         id: m.id
       });
-    }
   }
 
-  feedMarkerData(markers:any) {
+  feedMarkerData(ev:any, markers:any) {
+    var self = this;
+    console.log('Called feedMarkerData', markers);
     markers.forEach(function (marker) {
-      this.generateMarker(marker);
+      self.generateMarker(marker);
     });
   }
 
@@ -141,11 +135,11 @@ export var Map = TR.createClass(ReactMap);
 
 export var example = (el:HTMLElement, cb?:() => void) => {
   var mapOptions = {
-    zoom: 4,
+    zoom: 10,
     center: new google.maps.LatLng(47.6097, -122.3331)
   };
   var mData:MarkerData = {
-    position: new google.maps.LatLng(47.6097, -122.331),
+    position: new google.maps.LatLng(47.6097, -122.3331),
     id: 'marker-1',
     draggable: false,
     raiseOnDrag: false,

@@ -17,10 +17,12 @@ Data.getProjects = function (cb) {
 
 Data.getMultiFamily = function (cb) {
   new GovClient(GovClient.MultiFamily).where('STD_CITY=\'Seattle\'', function (err, res) {
+    console.log(res.features[0]);
     cb(_.map(res.features, function (feature) {
       return {
         name: feature.properties['PROPERTY_NAME_TEXT'],
         desc: feature.properties['PROPERTY_CATEGORY_NAME'],
+        groupName: feature.properties['CLIENT_GROUP_NAME'],
         number: feature.properties['PROPERTY_ON_SITE_PHONE_NUMBER'],
         geometry: feature.geometry
       };
@@ -43,7 +45,7 @@ Data.getHousingCounseling = function (cb) {
 
 window.Data = Data;
 
-Data.getHousingCounseling(function (data) {
-  console.log('Got HA data');
-  console.log(data);
-});
+//Data.getHousingCounseling(function (data) {
+//  console.log('Got HA data');
+//  console.log(data);
+//});

@@ -10,7 +10,10 @@ var defaultUrl = 'http://services.arcgis.com/VTyQ9soqVukalItT/' +
 function queryDefaults() {
   return {
     outFields: '*',
-    f: 'geojson'
+    f: 'geojson',
+    outSR: JSON.stringify({
+      wkid: 4326
+    })
   }
 }
 
