@@ -5,11 +5,11 @@ module.exports = function (grunt) {
     grunt.initConfig({
         browserify: {
             dev: {
-                src: 'src/index.js',
-                dest: 'assets/js/index.js',
+                src: 'fe/index.js',
+                dest: 'www/index.js',
                 options:{
                     browserifyOptions: {
-                        paths:['fe/components/node_modules','fe/ts'],
+                        paths:['node_modules','fe/'],
                         debug: true
                     },
                     preBundleCB: function (bundle) {
@@ -18,11 +18,11 @@ module.exports = function (grunt) {
                 }
             },
             dist: {
-                src: 'src/index.js',
-                dest: 'assets/js/index.js',
+                src: 'fe/index.js',
+                dest: 'www/index.js',
                 options:{
                     browserifyOptions: {
-                        paths:['../../node_modules','src/'],
+                        paths:['node_modules','fe/'],
                         debug: true
                     },
                     preBundleCB: function (bundle) {
@@ -37,15 +37,17 @@ module.exports = function (grunt) {
                     livereload: true
                 },
                 files: [
-                    '*.html',
-                    'src/*.ts'
+                    'fe/*.ts',
+                    'www/**/*.css',
+                    'www/index.html',
+                    'fe/**/*.ts'
                 ],
                 tasks: ['ts', 'browserify:dist']
             }
         },
         ts: {
             dev: {
-                src: ['src/*.ts', '!node_modules/**/*.ts'],
+                src: ['fe/index.ts', '!node_modules/**/*.ts'],
                 options: {
                     module: "commonjs"
                 }
@@ -56,6 +58,6 @@ module.exports = function (grunt) {
     // Load the npm installed tasks
 
     grunt.registerTask('default', ['ts', 'browserify:dist','watch']);
-    grunt.registerTask('build', ['less:dist', 'ts', 'browserify:dist', 'copy:dist']);
+    grunt.registerTask('build', ['ts', 'browserify:dist']);
 
 };

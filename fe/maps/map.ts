@@ -1,4 +1,4 @@
-/// <reference path="../typings/tsd.d.ts"/>
+/// <reference path="../../typings/tsd.d.ts"/>
 
 import React = require('react');
 import TR = require('typed-react');
@@ -146,7 +146,6 @@ class ReactMap extends TR.Component<MapProps,MapState> {
   }
 
   render() {
-
 
     if (this.state.gMap != null && this.markers.length == 0) {
       _.each(this.props.mData, this.generateMarker);

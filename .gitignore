@@ -4,9 +4,10 @@
 
 node_modules/
 
-www/maps/**/*.js
+fe/*.js
+www/*.js
 *.js.map
 *.d.ts
 
-!www/maps/Gruntfile.js
+!Gruntfile.js
 test/data

@@ -3,8 +3,8 @@
 import React = require('react');
 import TR = require('typed-react');
 
-import MapLookUp = require('./mapLookUp');
-import Map = require('./map');
+import MapLookUp = require('maps/mapLookUp');
+import Map = require('maps/map');
 
 function initialize() {
   Map.example(document.getElementById('content'), ()=>{
