@@ -16,3 +16,7 @@ assets/js/
 
 !Gruntfile.js
 test/data
+
+fe/list/list.js
+fe/list/toggle-list.js
+fe/misc/icon.js

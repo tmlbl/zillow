@@ -5,92 +5,92 @@ import TR = require("typed-react");
 var RCTG = React.addons.CSSTransitionGroup;
 
 export interface IconProps {
-    src:string;
-    id?:string;
-    className?: string;
-    tooltip?:string;
-    float?:string;
-    onClick?: ()=> any;
+  src:string;
+  id?:string;
+  className?: string;
+  tooltip?:string;
+  float?:string;
+  onClick?: ()=> any;
 }
 
 export interface IconWithTextProps extends IconProps {
-    text:string;
+  text:string;
 }
 
 export interface IconWithTextState {
-    text:string;
+  text:string;
 }
 
-export interface ToggleFaIconState{
-    checked:boolean;
+export interface ToggleFaIconState {
+  checked:boolean;
 }
 
 class _FaIcon extends TR.Component<IconProps, {}> {
-    render() {
-        var cn = this.props.className ? this.props.className : '';
-        return React.createElement('i', {
-            className: 'fa fa-' + this.props.src + ' ' + cn,
-            onClick: this.props.onClick,
-            float: this.props.float ? this.props.float : ''
-        })
-    }
+  render() {
+    var cn = this.props.className ? this.props.className : '';
+    return React.createElement('i', {
+      className: 'fa fa-' + this.props.src + ' ' + cn,
+      onClick: this.props.onClick,
+      float: this.props.float ? this.props.float : ''
+    })
+  }
 }
 
-class _FaToggleIcon extends TR.Component<IconProps, ToggleFaIconState>{
-    getInitialState(){
-        return{
-            checked:false
-        }
+class _FaToggleIcon extends TR.Component<IconProps, ToggleFaIconState> {
+  getInitialState() {
+    return {
+      checked: false
     }
-    
-    render(){
-        var check:any = null,
-            spanProps:{className:string; dataTooltip?:string; onClick:()=>void} = {
-                className:'fa-stack fa-lg',
-                onClick:()=>{
-                    this.setState({checked: !this.state.checked});
-                    this.props.onClick();
-                }
-            };
-        if(this.props.tooltip){
-            spanProps.dataTooltip = this.props.tooltip;
-            
+  }
+
+  render() {
+    var check:any = null,
+      spanProps:{className:string; dataTooltip?:string; onClick:()=>void} = {
+        className: 'fa-stack fa-lg',
+        onClick: ()=> {
+          this.setState({checked: !this.state.checked});
+          this.props.onClick();
         }
-        if(this.state.checked){
-            check = React.createElement('i',{
-                key:this.props.id,
-                className:"fa fa-check-circle fa-stack-2x",
-                style:{ color:'green' }
-            })
-        }
-        
-        return(
-            React.createElement('span', spanProps,
-                React.createElement('i', {className:'fa fa-' + this.props.src + ' fa-stack-2x'}),
-                React.createElement(RCTG,{transitionName:'fa-check-toggle'}, check)
-            )
-        )
+      };
+    if (this.props.tooltip) {
+      spanProps.dataTooltip = this.props.tooltip;
+
     }
+    if (this.state.checked) {
+      check = React.createElement('i', {
+        key: this.props.id,
+        className: "fa fa-check-circle fa-stack-2x",
+        style: {color: 'green'}
+      })
+    }
+
+    return (
+      React.createElement('span', spanProps,
+        React.createElement('i', {className: 'fa fa-' + this.props.src + ' fa-stack-2x'}),
+        React.createElement(RCTG, {transitionName: 'fa-check-toggle'}, check)
+      )
+    )
+  }
 }
 
 class _FaIconWithText extends TR.Component<IconWithTextProps, IconWithTextState> {
 
-    getInitialState() {
-        return {
-            text: this.props.text
-        }
+  getInitialState() {
+    return {
+      text: this.props.text
     }
+  }
 
-    render() {
-        var cn = this.props.className ? this.props.className : '',
-            text = this.props.text ? this.props.text : 'N/A';
-        return (
-            React.createElement('span', {className: 'fa-stack fa-1x ' + cn}, [
-                    React.createElement('i', {className: 'fa fa-' + this.props.src + ' fa-stack-1x'}),
-                    React.createElement('strong', {className: 'fa-stack-1x icon-text'}, text)
-                ]
-            ))
-    }
+  render() {
+    var cn = this.props.className ? this.props.className : '',
+      text = this.props.text ? this.props.text : 'N/A';
+    return (
+      React.createElement('span', {className: 'fa-stack fa-1x ' + cn}, [
+          React.createElement('i', {className: 'fa fa-' + this.props.src + ' fa-stack-1x'}),
+          React.createElement('strong', {className: 'fa-stack-1x icon-text'}, text)
+        ]
+      ))
+  }
 }
 
 /**

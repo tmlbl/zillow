@@ -80,7 +80,7 @@ class App extends TR.Component<MapAppProps,MapAppStates> {
           if (status == google.maps.GeocoderStatus.OK) {
             workLatLng = results;
             calcRoute(homeLatLng[0].geometry.location, workLatLng[0].geometry.location, (results:any, status:any)=> {
-              $(document).trigger('map:NewDirections',[results]);
+              $(document).trigger('map:NewDirections', [results]);
               if (status == google.maps.GeocoderStatus.OK) {
                 me.setState({
                   home: this.state.home,

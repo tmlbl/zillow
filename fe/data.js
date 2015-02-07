@@ -17,11 +17,26 @@ Data.getProjects = function (cb) {
 
 Data.getMultiFamily = function (cb) {
   new GovClient(GovClient.MultiFamily).where('STD_CITY=\'Seattle\'', function (err, res) {
+    console.log(res.features[0]);
     cb(_.map(res.features, function (feature) {
       return {
         name: feature.properties['PROPERTY_NAME_TEXT'],
         desc: feature.properties['PROPERTY_CATEGORY_NAME'],
+        groupName: feature.properties['CLIENT_GROUP_NAME'],
         number: feature.properties['PROPERTY_ON_SITE_PHONE_NUMBER'],
+        geometry: feature.geometry
+      };
+    }));
+  });
+};
+
+Data.getHousingCounseling = function (cb) {
+  new GovClient(GovClient.HousingCounseling).where('Agency_Address_City=\'Seattle\'', function (err, res) {
+    cb(_.map(res.features, function (feature) {
+      return {
+        name: feature.properties['Agency_Name'],
+        phone: feature.properties['Agency_GTR_Phone'],
+        email: feature.properties['Agency_GTR_Email'],
         geometry: feature.geometry
       };
     }));
@@ -30,7 +45,7 @@ Data.getMultiFamily = function (cb) {
 
 window.Data = Data;
 
-Data.getMultiFamily(function (data) {
-  console.log('Got multi family data');
-  console.log(data);
-});
+//Data.getHousingCounseling(function (data) {
+//  console.log('Got HA data');
+//  console.log(data);
+//});
