@@ -5,6 +5,7 @@
 node_modules/
 
 fe/*.js
+!fe/data.js
 src/*.js
 fe/maps/*.js
 fe/index.js

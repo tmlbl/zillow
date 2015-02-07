@@ -22,8 +22,8 @@ GovClient.LIHTC = defaultUrl;
 GovClient.AffordabilityIndex = 'http://services' +
   '.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/' +
   'LocationAffordabilityIndexData/FeatureServer/0/query?';
-GovClient.MultiFamily = 'http://services.arcgis.com/' +
-  'VTyQ9soqVukalItT/arcgis/rest/services/FairMarketRent' +
+GovClient.MultiFamily = 'http://services.arcgis.com/VTy' +
+  'Q9soqVukalItT/arcgis/rest/services/MultiFamilyPropertie' +
   's/FeatureServer/0/query?';
 
 GovClient.prototype.query = function (query, cb) {
@@ -36,6 +36,10 @@ GovClient.prototype.query = function (query, cb) {
 
 GovClient.prototype.where = function (clause, cb) {
   this.query({ where: clause }, cb);
+};
+
+GovClient.prototype.near = function (coords, cb) {
+
 };
 
 function form(query) {
