@@ -1,4 +1,4 @@
-# SmartMove: Live where it is smarter, not harder
+# SmartMove: Live smarter, not harder
 
 A web application that uses data from HUD EGIS and Google Maps to assist low-income renters and
 beneficiaries of government programs move closer to work and to the things that matter to them.
