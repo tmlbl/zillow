@@ -3,12 +3,15 @@ var Data = {};
 var GovClient = require('data/govclient'),
     _ = require('lodash');
 
+require('data/addLookup');
+
 Data.getProjects = function (cb) {
   new GovClient(GovClient.LIHTC).where('PROJ_CTY=\'Seattle\'', function (err, result) {
     cb(_.map(result.features, function (datum) {
       return {
         name: datum.properties['PROJECT'],
         number: datum.properties['CO_TEL'],
+        allocamt: datum.properties['ALLOCAMT'],
         geometry: datum.geometry
       };
     }));
@@ -32,6 +35,7 @@ Data.getMultiFamily = function (cb) {
 
 Data.getHousingCounseling = function (cb) {
   new GovClient(GovClient.HousingCounseling).where('Agency_Address_City=\'Seattle\'', function (err, res) {
+    console.log(res.features[0]);
     cb(_.map(res.features, function (feature) {
       return {
         name: feature.properties['Agency_Name'],
@@ -44,8 +48,3 @@ Data.getHousingCounseling = function (cb) {
 };
 
 window.Data = Data;
-
-//Data.getHousingCounseling(function (data) {
-//  console.log('Got HA data');
-//  console.log(data);
-//});
