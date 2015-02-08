@@ -1247,6 +1247,7 @@ footer{
 /*------ portfolio - ------------------------------------------------*/
 #folio {
 	padding:0 0 40px;
+	border-bottom: 1px solid #ccc;
 }
 #folio_container{
 	position:relative;
@@ -2631,7 +2632,7 @@ nav  a{
 
 .add-address > label {
 	display: inline-block;
-	width: 100%;
+	width: 30%;
 }
 
 .add-address > input {
@@ -2639,6 +2640,17 @@ nav  a{
 	width: 80%;
 	padding: 15px;
 	margin: 8px;
+}
+
+.add-address > input[type=checkbox] {
+	display: inline-block;
+	width: 10% !important;
+	padding: 15px;
+	margin: 8px;
+}
+
+.add-address > input[type=number] {
+	margin-bottom: 40px;
 }
 
 h3.habitat {
