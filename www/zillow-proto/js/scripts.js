@@ -72,35 +72,6 @@ function initHackathon() {
           if (d < 979) setTimeout(function() {
               c();
           }, 600);
-          if (1 == b.activeIndex) setTimeout(function() {
-              $(".scroll-nav").animate({
-                  right: "-50px"
-              });
-              $(".scroll-nav a").each(function(a) {
-                  var b = $(this);
-                  setTimeout(function() {
-                      b.animate({
-                          right: "-50px"
-                      }, {
-                          queue: false,
-                          duration: 500,
-                          easing: "easeInOutQuart"
-                      });
-                  }, 250 * a);
-              });
-          }, 1e3); else {
-              $(".scroll-nav").animate({
-                  right: "-150px"
-              });
-              $(".scroll-nav a").each(function(a) {
-                  var b = $(this);
-                  setTimeout(function() {
-                      b.animate({
-                          right: "-50px"
-                      }, 300);
-                  }, 150 * a);
-              });
-          }
       }
   });
   $("nav  a.swp").on("touchstart mousedown", function(b) {

@@ -83,7 +83,7 @@ h3 {
 	font-size: 1em;
 	font-weight: 200;
 }
-h4 {
+h4, .form-horizontal label {
 	font-size: 0.9em;
 	font-weight: 200;
 }
@@ -100,6 +100,10 @@ p {
 	font-size:14px;
 	line-height:21px;
 	font-family: Raleway, Open Sans, Arial, sans-serif;
+}
+.contact-link {
+	color: #0064CD;
+	text-decoration: underline;
 }
 .underline {
 	text-decoration: underline;
@@ -552,20 +556,11 @@ nav .active span {
 	text-align:left;
 	position:relative;
 }
-#home::before {
-	position: absolute;
-	top:-22%;
-	left:  -10%;
-	width:30%;
-	height:70%;
-	z-index:-1;
-	content: '';
-	background:rgba(49,49,49,0.3);
-}
+
 #home h2 {
 	margin-top:70px;
 	font-size:64px;
-	font-family: Raleway, Open Sans, Arial, sans-serif;
+	font-family: "TinyTim", "Raleway", "Open Sans", "Arial", sans-serif;
 	color:#fff;
 }
 #home .button {
@@ -1240,7 +1235,7 @@ footer{
 	float:left;
 }
 .to-top-holder {
-	border-top: 1px solid #555;
+	border-top: 1px solid #ccc;
 	float:left;
 	/*width:35%;   return to this value when adding partner logos */
 	width: 100%;
@@ -1534,6 +1529,32 @@ footer{
 	position:relative;
 	top:-20px;
 }
+.form-horizontal {
+	padding: 0 60px;
+}
+.form-horizontal label, .form-horizontal input {
+	clear: both;
+	float: left;
+	margin-bottom: 10px;
+}
+.form-horizontal input {
+	float:left;
+	height:50px;
+	width: 100%;
+	border:none;
+	outline:none;
+	background: #fff;
+	padding-left:8px;
+	letter-spacing:2px;
+	color:#000;
+	font-size:10px;
+	border:1px solid #eee;
+	font-weight:200;
+	line-height:50px;
+	font-family: 'Montserrat', sans-serif;
+	-webkit-appearance: none;
+	border-radius: none;
+}
 /*------Order ------------------------------------------*/
 #order {
 	padding:70px 0;
@@ -1623,7 +1644,7 @@ footer{
 	line-height:50px;
 	font-family: 'Montserrat', sans-serif;
 	-webkit-appearance: none;
-    border-radius: none;
+  border-radius: none;
 }
 .subscriptionForm input#submitButton{
 	border:none;
@@ -1648,6 +1669,7 @@ footer{
 /*------ contact - ------------------------------------------------*/
 #contact {
 	padding:0;
+	overflow-x: hidden;
 }
 .contact-header {
 	float:left;
@@ -1815,7 +1837,7 @@ footer{
 }
 /*------ Map ----------------------------------------------*/
 #mapbox{
-	position:relative ;
+	position:relative;
 	width:100%;
 	height:600px;
 	overflow:hidden;

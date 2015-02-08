@@ -57,14 +57,6 @@
                     <a href="#" class="arrow-left transition2"><i class="fa fa-angle-left"></i></a>
                 </div>
             </div>
-            <!--about slide navigation-->
-            <div class="scroll-nav">
-                <a href="#about"><i class="fa"></i><span>About</span></a>
-                <a href="#facts"><i class="fa"></i><span>Facts</span></a>
-                <a href="#twitteritem"><i class="fa"></i><span>Government Programs</span></a>
-                <a href="#resume"><i class="fa"></i><span>Lenders</span></a>
-                <a href="#testimonials"><i class="fa"></i><span>Testomonials</span></a>
-            </div>
             <!--start content-->
             <div class="swiper-container">
                 <div class="swiper-wrapper">
@@ -78,7 +70,8 @@
                         <div class="container">
                             <section class="homeholder no-bg">
                                 <div class="content" id="home">
-                                    <h2 class="elem">Make the SmartMove&trade;</h2>
+                                    <h2>Make the <span>SmartMove&trade;</span></h2>
+                                    <div class="clearfix"></div>
                                     <!--<div class="home-separator"><span></span></div>-->
                                     <!--<a href="#" class="button start-button  transition hide-icon"><i class="fa fa-angle-right transition2"></i><span class="text transition color-bg">Let's Start</span></a>-->
                                 </div>
@@ -149,7 +142,6 @@
                                     </div>
                                 </div>
                             </section>
-
                             <!--section PARTNERSHIP LOGOS -->
                             <section id="clients">
                                 <div class="clients-holder">
@@ -188,82 +180,75 @@
                                 <div class="content">
                                     <h2>Build <span>Your Profile</span></h2>
                                     <div class="clearfix"></div>
-                                    <p class="copy">Fill out the following form to return results based on your lifestyle and habits
-                                        that will enable to empower us to perform a needs analysis and provide you with
-                                        programs that you qualfiy based on your situation while allowing you to explore
-                                        that places around your habitat that would make the experience of homeownership
-                                        an experience that's worth living.</p>
+                                    <p>Fill out the following form to return results based on your lifestyle and habits that will enable to empower us to perform a needs analysis and provide you with programs that you qualfiy based on your situation while allowing you to explore that places around your habitat that would make the experience of homeownership an experience that's worth living.</p>
                                     <div class="clearfix"></div>
                                     <div class="color-separator"></div>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="overlay"></div>
                             </div>
-							              <!--portfolio filters-->
+                            <!--portfolio filters-->
                             <section id="folio" class="gray-bg">
                                 <div id="options">
                                     <ul id="filters" class="option-set" data-option-key="filter">
                                         <li class="filter actcat transition" data-filter="all">All</li>
-                                        <li class="filter transition" data-filter="category_1">Personal Info </li>
-                                        <li class="filter transition" data-filter="category_2">Expenses</li>
-                                        <li class="filter transition" data-filter="category_3">Habitat</li>
-                                        <li class="filter transition" data-filter="category_4">Lifestyle</li>
-                                        <li class="filter transition" data-filter="category_4">Atypical Factors</li>
+                                        <li class="filter transition" data-filter="category_1">Rent Assistance</li>
+                                        <li class="filter transition" data-filter="category_2">Down Payment Assistance</li>
+                                        <li class="filter transition" data-filter="category_3">Renovation Assistance</li>
+                                        <li class="filter transition" data-filter="category_4">Veterans</li>
+                                        <li class="filter transition" data-filter="category_4">Disabled</li>
                                     </ul>
                                 </div>
-                                <div class="info-form">
-                                    <h3>Where is Your Habitat?</h3>
-                                    <div id="savedAddresses"></div>
-                                    <div class="add-address">
-                                        <label for="addressBox">Add a Location</label>
-                                        <input id="addressBox" type="text" placeholder="Start typing a place name or address..."/>
-                                        <label for="numVisits">How many times are you here per month?</label>
-                                        <input id="numVisits" type="number" placeholder="4"/>
-                                        <button id="submitAddress">Add</button>
+                                <!-- ajax  Page Holder-->
+                                <div id="project-page-holder">
+                                    <div class="clearfix"></div>
+                                    <div id="project-page-data"></div>
+                                    <div class="clearfix"></div>
+                                    <div id="project-page-button" class="clearfix">
+                                        <a id="project_close" class="transition" href="#"><i class="fa fa-times"></i></a>
                                     </div>
                                 </div>
-                                <!-- Personal Profile Forms -->
-                            </section>
-                            <!--section subscribe-->
-                            <section id="subscribe">
-                                <div class="overlay"></div>
-                                <div class="bg bg-parallax" style="
-                                background: #EEE"></div>
+                                <div class="clearfix"></div>
+                                <!--portfolio links -->
                                 <div class="content">
-                                    <div class="subscribe-holder">
-                                        <h3>SpaceLab Design and Development Resources for Rent : Make Offer</h3>
-                                        <div class="row-fluid">
-                                            <div class="span4">
-                                                <p class="copy">The things that matter to you matter to everybody. They matter
-                                                    to us. Your project matters to us. Get in touch and we would
-                                                    love to explore what problems we can help you solve. We are
-                                                    <span class="underline">absolutely</span> for hire.</p>
-                                            </div>
-                                            <div class="span8">
-                                                <div class="subcribe-form">
-                                                    <fieldset>
-                                                        <form class="subscriptionForm" method="post">
-                                                            <input id="subscriptionForm" class="inputForm" type="text" value="Enter Your Email Address" onFocus="if (this.value=='Enter Your Email Address') this.value=''" onBlur="if (this.value==''){this.value='Enter Your Email Address'}" />
-                                                            <input type="submit" id="submitButton" class="transition" value="Send">
-                                                        </form>
-                                                        <div id="success">Thanks for your subscription</div>
-                                                        <div id="error">Please enter a valid email address</div>
-                                                    </fieldset>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div id="folio_container">
+
+                                                <!-- 2 project ajax page gallery -->
+                                                <div class="box grid-2 open-project-link  mix category_2 mix_all notvisible" style="display: inline-block; opacity: 1;">
+                                                    <a href="projects/project-ajax3.html" class="open-project">
+                                                        <div class="folio-img-holder">
+                                                            <img src="http://www.parkviewservices.org/wp-content/uploads/2012/01/logonew.png" class="respimg transition" alt="" title="">
+                                                            <div class="folio-item" style="opacity: 0;">
+                                                                <div class="folio-overlay"><span class="transition2 scale-callback"></span><span class="transition2 scale-callback"></span><span class="transition2 scale-callback"></span><span class="transition2 scale-callback"></span><span class="transition2 scale-callback"></span><span class="transition2 scale-callback"></span></div>
+                                                                <span class="fol-but" style="opacity: 0; bottom: -50%;">Details Coming Soon!</span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <div class="box-details">
+                                                        <h3>Parkview Services</h3>
+                                                    </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Personal Profile Forms -->
+                                <div class="info-form">
+    <h3>Where is Your Habitat?</h3>
+    <div id="savedAddresses"></div>
+    <div class="add-address">
+        <label for="addressBox">Add a Location</label>
+        <input id="addressBox" type="text" placeholder="Start typing a place name or address..."/>
+        <label for="numVisits">How many times are you here per month?</label>
+        <input id="numVisits" type="number" placeholder="4"/>
+        <button id="submitAddress">Add</button>
+    </div>
+</div>
                             </section>
-                            <!--section order-->
-                            <section id="order" class="gray-bg">
-                                <div class="content">
-                                    <h3>LET'S EAT A BUNCH OF CARAMELS TOGETHER</h3>
-                                    <p>Well, when you think about it... It's as arbitrary as drinking coffee. </p>
-                                    <div class="clearfix"></div>
-                                    <a href="#" class="button go-contact  content-button transition hide-icon"><i class="fa fa-angle-right transition2"></i> <span class="text transition color-bg">Empower your housing choices</span></a>
-                                </div>
-                            </section>
+
                         </div>
                     </div>
                     <!--portfolio  end-->
@@ -285,24 +270,14 @@
                                 <div class="overlay"></div>
                             </div>
                             <!--section contact top-->
-                            <section id="contact">
+                            <section id="contact" class="gray-bg">
                               <div class="row-fluid">
                                   <!--map-->
                                   <div id="content"></div>
                                   <div id="form"></div>
                               </div>
                             </section>
-                            <!--section contact social-->
-                            <section id="contact-social">
-                                <div class="overlay"></div>
-                                <div class="bg bg-parallax" style="background:url(http://www.placehold.it/1920x1080)"></div>
-                                <div class="content">
-                                    <ul>
-                                        <li><a href="#"  target="_blank" class="transition">facebook</a></li>
-                                        <li><a href="#"  target="_blank" class="transition">linkedin</a></li>
-                                    </ul>
-                                </div>
-                            </section>
+
                         </div>
                     </div>
                 </div>
