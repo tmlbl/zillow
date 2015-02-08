@@ -722,7 +722,7 @@ footer{
 .item-box {
 	max-width:800px;
 	margin:70px auto ;
-	padding:50px;
+	padding:50px 0;
 	position:relative;
 }
 .about-button {
@@ -912,7 +912,7 @@ footer{
 	position:absolute;
 	top:0;
 	left:0;
-	width:65%;
+	width:70%;
 	height:100%;
 	background:#eee;
 }
@@ -920,7 +920,7 @@ footer{
 	content:'';
 	position:absolute;
 	top:50%;
-	left:65%;
+	left:70%;
 	margin-left:-20px;
 	margin-top:-20px;
 	width:40px;
@@ -1027,6 +1027,9 @@ footer{
 	padding:20px;
 	position:relative;
 	margin-top:20px;
+}
+.resume-box p {
+	margin-bottom: 12px;
 }
 .resume-item {
 	float:left;
