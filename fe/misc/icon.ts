@@ -66,8 +66,8 @@ class _FaToggleIcon extends TR.Component<IconProps, ToggleFaIconState> {
 
     return (
       React.createElement('span', spanProps,
-        React.createElement('i', {className: 'fa fa-' + this.props.src + ' fa-stack-2x'}),
-        React.createElement(RCTG, {transitionName: 'fa-check-toggle'}, check)
+        React.createElement('i', {className: 'fa fa-' + this.props.src + ' fa-2x'}),
+        React.createElement('div', {}, this.props.id)
       )
     )
   }
@@ -83,7 +83,7 @@ class _FaIconWithText extends TR.Component<IconWithTextProps, IconWithTextState>
 
   render() {
     var cn = this.props.className ? this.props.className : '',
-      text = this.props.text ? this.props.text : 'N/A';
+      text = this.props.id ? this.props.id : 'N/A';
     return (
       React.createElement('span', {className: 'fa-stack fa-1x ' + cn}, [
           React.createElement('i', {className: 'fa fa-' + this.props.src + ' fa-stack-1x'}),

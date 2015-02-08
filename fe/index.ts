@@ -14,6 +14,30 @@ import TT = require('maps/tooltips');
 
 function initialize() {
   Map.example(document.getElementById('content'), () => {
+    React.render(React.createElement(MapLookUp.MapApp, {className: 'direction-forms'}), document.getElementById('form'), () => {
+      setTimeout(()=> {
+        // Define the LatLng coordinates for the polygon's path.
+        var triangleCoords = [
+          new google.maps.LatLng(25.774252, -80.190262),
+          new google.maps.LatLng(18.466465, -66.118292),
+          new google.maps.LatLng(32.321384, -64.75737),
+          new google.maps.LatLng(25.774252, -80.190262)
+        ];
+
+        $(document).trigger('map:NewPolygon', [
+          [{
+            paths: triangleCoords,
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            //visible: false,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35
+          }]
+        ]);
+      }, 5000)
+
+    });
   });
 }
 
