@@ -1,4 +1,4 @@
-import Tip = require('component-tip');
+//import Tip = require('component-tip');
 import _ = require('lodash');
 var tipInterval:number = 2500;
 

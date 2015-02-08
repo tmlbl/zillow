@@ -174,15 +174,16 @@ export var Map = TR.createClass(ReactMap);
 
 var placeToMarker = (p:google.maps.places.PlaceResult[]):MarkerData[] => {
   return p.map((place, i) => {
+    console.log(place);
     return {
       position: place.geometry.location,
       id: 'place-' + i,
       draggable: false,
       raiseOnDrag: false,
       icon: ' ',
-      labelContent: '<object style="width:15px; height:15px;" type="image/svg+xml"' +
-      'data="zillow-proto/images/zillow-logo-mask.svg"></object>',
-      labelAnchor: new google.maps.Point(0, 0),
+      labelContent: '<object style="width:20px; height:20px;" type="image/svg+xml"' +
+      'data="images/zillow-logo-mask.svg">, class="tooltip" title="' + place.name + '"></object>',
+      labelAnchor: new google.maps.Point(10, 10),
       labelClass: 'marker'
     }
   })
@@ -232,7 +233,7 @@ export var example = (el:HTMLElement, cb?:() => void) => {
         $(e.currentTarget).addClass('active-map-markers');
         places.getNearByPlaces({
           location: gMap.getCenter(),
-          radius: 2000,
+          radius: 6000,
           types: ['school']
         }, (res:google.maps.places.PlaceResult[], status:google.maps.places.PlacesServiceStatus) => {
           if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -277,9 +278,9 @@ export var example = (el:HTMLElement, cb?:() => void) => {
     draggable: false,
     raiseOnDrag: false,
     icon: ' ',
-    labelContent: '<object style="width:15px; height:15px;" type="image/svg+xml"' +
-    'data="zillow-proto/images/zillow-logo-mask.svg"></object>',
-    labelAnchor: new google.maps.Point(0, 0),
+    labelContent: '<object style="width:20px; height:20px;" type="image/svg+xml"' +
+    'data="images/zillow-logo-mask.svg">, class="tooltip" title="' + 'herpderp' + '"></object>',
+    labelAnchor: new google.maps.Point(10, 10),
     labelClass: 'marker'
   };
   React.render(
