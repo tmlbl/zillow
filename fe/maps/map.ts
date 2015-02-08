@@ -8,7 +8,8 @@ import $ = require('jquery');
 import Places = require('./places');
 import Icons = require('../misc/icon');
 import ToggleList = require('../list/toggle-list');
-import mapData = require('./mapDataset')
+import mapData = require('./mapDataset');
+import TT = require('./tooltips');
 
 declare var MarkerWithLabel:any;
 
@@ -32,6 +33,7 @@ export interface MarkerData {
   raiseOnDrag: boolean;
   icon: string;
   labelContent: string;
+  toolTip:string;
   labelAnchor: google.maps.Point;
   labelClass?: string; // the CSS class for the label
 }
@@ -93,6 +95,7 @@ class ReactMap extends TR.Component<MapProps,MapState> {
 
   generateMarker(m:MarkerData) {
     var mark = new MarkerWithLabel(m);
+    TT.generateMapToolTip(mark, m.toolTip);
     mark.setMap(this.state.gMap);
     this.markers.push({
       marker: mark,
@@ -141,7 +144,7 @@ class ReactMap extends TR.Component<MapProps,MapState> {
     $(document).on('map:IsPointInPoly', this.checkPointInPolys);
 
     setTimeout(()=> {
-      gMap = new google.maps.Map(this.getDOMNode(), mapOptions);
+      window['gMap'] = gMap = new google.maps.Map(this.getDOMNode(), mapOptions);
       this.directionsDisplay.setMap(gMap);
       places = new Places.MapPlaceRequest(gMap);
 
@@ -181,8 +184,9 @@ var placeToMarker = (p:google.maps.places.PlaceResult[]):MarkerData[] => {
       draggable: false,
       raiseOnDrag: false,
       icon: ' ',
+      toolTip:place.name,
       labelContent: '<object style="width:20px; height:20px;" type="image/svg+xml"' +
-      'data="images/zillow-logo-mask.svg">, class="tooltip" title="' + place.name + '"></object>',
+      'data="images/zillow-logo-mask.svg"></object>',
       labelAnchor: new google.maps.Point(10, 10),
       labelClass: 'marker'
     }
@@ -278,6 +282,7 @@ export var example = (el:HTMLElement, cb?:() => void) => {
     draggable: false,
     raiseOnDrag: false,
     icon: ' ',
+    toolTip:'herp derp',
     labelContent: '<object style="width:20px; height:20px;" type="image/svg+xml"' +
     'data="images/zillow-logo-mask.svg">, class="tooltip" title="' + 'herpderp' + '"></object>',
     labelAnchor: new google.maps.Point(10, 10),
