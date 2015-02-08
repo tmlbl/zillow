@@ -22,8 +22,13 @@ export function mapMultiFam() {
                 draggable: false,
                 raiseOnDrag: false,
                 icon: ' ',
+<<<<<<< HEAD
                 labelContent: '<object style="width:15px; height:15px;" type="image/svg+xml"' +
                 'data="zillow-proto/images/zillow-logo-mask.svg">, class="tooltip" title="' + datum.name + '"></object>',
+=======
+                labelContent: '<i class="fa fa-home" data-tooltip="'+datum.name+'" ' +
+                'style="color:purple;"></i>',
+>>>>>>> broken tooltips
                 labelAnchor: new google.maps.Point(0, 0),
                 labelClass: 'marker'
             };
@@ -66,8 +71,13 @@ export function mapHousingCounseling() {
                 draggable: false,
                 raiseOnDrag: false,
                 icon: ' ',
+<<<<<<< HEAD
                 labelContent: '<object style="width:15px; height:15px;" type="image/svg+xml"' +
                 'data="zillow-proto/images/zillow-logo-mask.svg">, class="tooltip" title="' + datum.name + '"></object>',
+=======
+                labelContent: '<i class="fa fa-home" style="color:purple;"' +
+                    'data-tooltip="' + datum.name + '" title="' + datum.name + '"></i>',
+>>>>>>> broken tooltips
                 labelAnchor: new google.maps.Point(0, 0),
                 labelClass: 'marker'
             };

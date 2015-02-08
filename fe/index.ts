@@ -43,3 +43,7 @@ function initialize() {
 $(document).ready(() => {
   initialize();
 });
+
+import tips = require('maps/tooltips');
+
+tips.init();

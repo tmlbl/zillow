@@ -26,4 +26,3 @@ export var ToggleList = TR.createClass(_ToggleList);
 export var renderList = (props:ToggleListProps, el:Element, cb?:any) => {
   React.render(React.createElement(ToggleList, props), el, cb);
 };
-

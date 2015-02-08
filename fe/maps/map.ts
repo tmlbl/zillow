@@ -263,8 +263,8 @@ export var example = (el:HTMLElement, cb?:() => void) => {
     }
   ];
   var mapOptions = {
-    zoom: 10,
-    center: new google.maps.LatLng(47.6097, -122.3331),
+    zoom: 14,
+    center: new google.maps.LatLng(47.564757, -122.290830),
     scrollwheel: false,
     navigationControl: false,
     mapTypeControl: false,

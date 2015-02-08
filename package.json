@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "browser-request": "^0.3.3",
+    "component-tip": "^2.4.0",
     "express": "^4.11.2",
     "eyes": "^0.1.8",
     "geojson": "^0.2.0",
