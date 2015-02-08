@@ -1,1 +1,5 @@
 @import "./transitions.css";
+
+.active-map-markers{
+    color: #0064cd;
+}

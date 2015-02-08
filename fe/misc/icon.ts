@@ -10,7 +10,7 @@ export interface IconProps {
   className?: string;
   tooltip?:string;
   float?:string;
-  onClick?: ()=> any;
+  onClick?: (e)=> any;
 }
 
 export interface IconWithTextProps extends IconProps {
@@ -45,24 +45,24 @@ class _FaToggleIcon extends TR.Component<IconProps, ToggleFaIconState> {
 
   render() {
     var check:any = null,
-      spanProps:{className:string; dataTooltip?:string; onClick:()=>void} = {
+      spanProps:{className:string; dataTooltip?:string; onClick:(e) => void} = {
         className: 'fa-stack fa-lg',
-        onClick: ()=> {
+        onClick: (e)=> {
           this.setState({checked: !this.state.checked});
-          this.props.onClick();
+          this.props.onClick(e);
         }
       };
     if (this.props.tooltip) {
       spanProps.dataTooltip = this.props.tooltip;
 
     }
-    if (this.state.checked) {
-      check = React.createElement('i', {
-        key: this.props.id,
-        className: "fa fa-check-circle fa-stack-2x",
-        style: {color: 'green'}
-      })
-    }
+    //if (this.state.checked) {
+    //  check = React.createElement('i', {
+    //    key: this.props.id,
+    //    className: "fa fa-check-circle fa-stack-2x",
+    //    style: {color: 'green'}
+    //  })
+    //}
 
     return (
       React.createElement('span', spanProps,

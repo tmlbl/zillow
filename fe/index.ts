@@ -11,7 +11,7 @@ import List = require('list/list')
 import TL = require('list/toggle-list');
 
 function initialize() {
-  Map.example(document.getElementById('content'), ()=> {
+  Map.example(document.getElementById('content'), () => {
     React.render(React.createElement(MapLookUp.MapApp, {className: 'direction-forms'}), document.getElementById('form'), () => {
       setTimeout(()=> {
         // Define the LatLng coordinates for the polygon's path.

@@ -12,6 +12,9 @@ import mapData = require('./mapDataset')
 
 declare var MarkerWithLabel:any;
 
+var gMap:google.maps.Map = null;
+var places:Places.MapPlaceRequest = null;
+
 export interface Polygon {
   polygon:google.maps.Polygon;
   id?:string;
@@ -28,10 +31,9 @@ export interface MarkerData {
   draggable: boolean;
   raiseOnDrag: boolean;
   icon: string;
-  //map: google.maps.Map;
-  labelContent: string;//'<i class="fa fa-send fa-3x" style="color:rgba(153,102,102,0.8);"></i>',
+  labelContent: string;
   labelAnchor: google.maps.Point;
-  labelClass: string; // the CSS class for the label
+  labelClass?: string; // the CSS class for the label
 }
 
 export interface MapProps {
@@ -41,19 +43,12 @@ export interface MapProps {
   centerLat?: number;
   centerLng?: number;
 }
+
 export interface MapState {
   gMap:google.maps.Map;
   style:any;
 }
 
-export interface MarkerProps {
-  data:MarkerData;
-  map:google.maps.Map;
-}
-
-export interface MarkerState {
-  data:MarkerData;
-}
 
 class ReactMap extends TR.Component<MapProps,MapState> {
 
@@ -89,20 +84,20 @@ class ReactMap extends TR.Component<MapProps,MapState> {
       this.generatePolygon(p);
     })
   }
-  
-  checkPointInPolys(ev:any, latLng:google.maps.LatLng){
+
+  checkPointInPolys(ev:any, latLng:google.maps.LatLng) {
     return this.polygons.map((p:Polygon) => {
       return google.maps.geometry.poly.containsLocation(latLng, p.polygon);
     })
   }
 
   generateMarker(m:MarkerData) {
-      var mark = new MarkerWithLabel(m);
-      mark.setMap(this.state.gMap);
-      this.markers.push({
-        marker: mark,
-        id: m.id
-      });
+    var mark = new MarkerWithLabel(m);
+    mark.setMap(this.state.gMap);
+    this.markers.push({
+      marker: mark,
+      id: m.id
+    });
   }
 
   clearMarkers() {
@@ -146,9 +141,10 @@ class ReactMap extends TR.Component<MapProps,MapState> {
     $(document).on('map:IsPointInPoly', this.checkPointInPolys);
 
     setTimeout(()=> {
-      var gMap:google.maps.Map = new google.maps.Map(this.getDOMNode(), mapOptions);
+      gMap = new google.maps.Map(this.getDOMNode(), mapOptions);
       this.directionsDisplay.setMap(gMap);
-      this.places = new Places.MapPlaceRequest(gMap);
+      places = new Places.MapPlaceRequest(gMap);
+
       this.setState({
         gMap: gMap,
         style: this.state.style
@@ -176,45 +172,93 @@ class ReactMap extends TR.Component<MapProps,MapState> {
 
 export var Map = TR.createClass(ReactMap);
 
+var placeToMarker = (p:google.maps.places.PlaceResult[]):MarkerData[] => {
+  return p.map((place, i) => {
+    return {
+      position: place.geometry.location,
+      id: 'place-' + i,
+      draggable: false,
+      raiseOnDrag: false,
+      icon: ' ',
+      labelContent: '<object style="width:15px; height:15px;" type="image/svg+xml"' +
+      'data="zillow-proto/images/zillow-logo-mask.svg"></object>',
+      labelAnchor: new google.maps.Point(0, 0),
+      labelClass: 'marker'
+    }
+  })
+};
+
 export var example = (el:HTMLElement, cb?:() => void) => {
-  console.error(el);
   var exampleButtons:Icons.IconProps[] = [
     {
       id: 'Multi Family',
+      tooltip: 'Multi Family',
       src: 'h-square',
-      onClick: ()=> {
+      onClick: (e)=> {
+        $('.active-map-markers').removeClass('active-map-markers');
+        $(e.currentTarget).addClass('active-map-markers');
         console.log('Loading multi-family home data...');
         mapData.mapMultiFam();
       }
     },
     {
       id: 'Public Housing',
+      tooltip: 'Public Housing',
       src: 'home',
-      onClick: () => {
+      onClick: (e) => {
+        $('.active-map-markers').removeClass('active-map-markers');
+        $(e.currentTarget).addClass('active-map-markers');
         console.log('Loading public housing data...');
         mapData.mapPublicHousing();
       }
     },
     {
       id: 'Housing Counseling',
-      src: 'shopping-cart',
-      onClick: ()=> {
+      tooltip: 'Housing Counseling',
+      src: 'users',
+      onClick: (e) => {
+        $('.active-map-markers').removeClass('active-map-markers');
+        $(e.currentTarget).addClass('active-map-markers');
         console.log('Loading housing counseling data...');
         mapData.mapHousingCounseling();
       }
     },
     {
       id: 'school',
+      tooltip: 'School',
       src: 'university',
-      onClick: ()=> {
+      onClick: (e) => {
+        $('.active-map-markers').removeClass('active-map-markers');
+        $(e.currentTarget).addClass('active-map-markers');
+        places.getNearByPlaces({
+          location: gMap.getCenter(),
+          radius: 2000,
+          types: ['school']
+        }, (res:google.maps.places.PlaceResult[], status:google.maps.places.PlacesServiceStatus) => {
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+            $(document).trigger('markerData', [placeToMarker(res)]);
+          }
+
+        });
         console.log('school');
       }
     },
     {
-      id: 'transit',
-      src: 'bus',
-      onClick: ()=> {
-        console.log('transit');
+      id: 'grocery',
+      tooltip: 'Grocery Store',
+      src: 'shopping-cart',
+      onClick: (e)=> {
+        $('.active-map-markers').removeClass('active-map-markers');
+        $(e.currentTarget).addClass('active-map-markers');
+        places.getNearByPlaces({
+          location: gMap.getCenter(),
+          radius: 6000,
+          types: ['grocery_or_supermarket']
+        }, (res:google.maps.places.PlaceResult[], status:google.maps.places.PlacesServiceStatus) => {
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+            $(document).trigger('markerData', [placeToMarker(res)]);
+          }
+        })
       }
     }
   ];
@@ -233,9 +277,10 @@ export var example = (el:HTMLElement, cb?:() => void) => {
     draggable: false,
     raiseOnDrag: false,
     icon: ' ',
-    labelContent: '<i class="fa fa-send fa-3x" style="color:rgba(153,102,102,0.8);"></i>',
+    labelContent: '<object style="width:15px; height:15px;" type="image/svg+xml"' +
+    'data="zillow-proto/images/zillow-logo-mask.svg"></object>',
     labelAnchor: new google.maps.Point(0, 0),
-    labelClass: 'marker' // the CSS class for the label
+    labelClass: 'marker'
   };
   React.render(
     React.createElement('div', {className: ''},
