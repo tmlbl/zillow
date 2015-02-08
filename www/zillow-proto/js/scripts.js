@@ -42,15 +42,17 @@ equalheight = function(container){
       rowDivs[currentDiv].height(currentTallest);
     }
   });
-}
+};
 
 // functions   ----------------------------------------
 function initHackathon() {
   "use strict";
   // Author code here
-  $('#video-container').fadeTo(300, 0.69, function() {
-     // Animation complete.
-     $(this).css("visibility", "visible");
+  $(document).on('YTPStart', function () {
+    $('#video-container').fadeTo(300, 0.69, function() {
+      // Animation complete.
+      $(this).css("visibility", "visible");
+    });
   });
 
   var a = new Swiper(".swiper-container", {
