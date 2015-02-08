@@ -1391,7 +1391,7 @@ declare module google.maps {
             vicinity: string;
             website: string;
         }
-
+        //Jake Grajewski Edited this
         export interface PlaceSearchRequest {
             bounds?: LatLngBounds;
             keyword?: string;
