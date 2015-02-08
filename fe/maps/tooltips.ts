@@ -49,7 +49,7 @@ var AllToolTips:any[] = [];
 
 export var generateMapToolTip = (marker:any, text:any) => {
   var boxText = document.createElement("div");
-  boxText.style.cssText = "border: 1px solid black; border-radius:2px;  margin-top: 8px; background: #0064cd; padding: 5px;";
+  boxText.style.cssText = "border-radius:2px; margin-top: 8px; background: #0064CD; padding: 5px; color: white;";
   boxText.innerHTML = text;
   
   var myOptions = {
@@ -59,8 +59,7 @@ export var generateMapToolTip = (marker:any, text:any) => {
     //,pixelOffset: new google.maps.Size(-140, 0)
     ,zIndex: null
     ,boxStyle: {
-      background: "url('tipbox.gif') no-repeat"
-      ,opacity: 0.95
+      opacity: 0.95
       ,maxWidth: "200px"
     }
     ,closeBoxURL:""
