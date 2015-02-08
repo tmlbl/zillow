@@ -11,6 +11,16 @@ import ToggleList = require('../list/toggle-list');
 
 declare var MarkerWithLabel:any;
 
+export interface Polygon {
+  polygon:google.maps.Polygon;
+  id?:string;
+}
+
+export interface Marker {
+  marker: any;
+  id: string;
+}
+
 export interface MarkerData {
   id:string;
   position: google.maps.LatLng;
@@ -21,11 +31,6 @@ export interface MarkerData {
   labelContent: string;//'<i class="fa fa-send fa-3x" style="color:rgba(153,102,102,0.8);"></i>',
   labelAnchor: google.maps.Point;
   labelClass: string; // the CSS class for the label
-}
-
-export interface Marker {
-  marker: any;
-  id: string;
 }
 
 export interface MapProps {
@@ -44,6 +49,7 @@ export interface MarkerProps {
   data:MarkerData;
   map:google.maps.Map;
 }
+
 export interface MarkerState {
   data:MarkerData;
 }
@@ -51,18 +57,42 @@ export interface MarkerState {
 class ReactMap extends TR.Component<MapProps,MapState> {
 
   private markers:Marker[] = [];
+  private polygons:Polygon[] = [];
   private directionsDisplay = new google.maps.DirectionsRenderer();
   private places:Places.MapPlaceRequest = null;
   private centerLat:number = null;
   private centerLng:number = null;
 
   static defaultStyle = {
-    height: '500px',
-    width: '500px'
+    height: '800px',
+    width: '800px'
   };
 
   displayDirections(e:JQueryEventObject, dir:google.maps.DirectionsResult) {
     this.directionsDisplay.setDirections(dir);
+  }
+
+  private pIdCnt = 0;
+
+  generatePolygon(opts:google.maps.PolygonOptions) {
+    var polygon = new google.maps.Polygon(opts);
+    polygon.setMap(this.state.gMap);
+    this.polygons.push({
+      polygon: polygon,
+      id: 'polygon-' + this.pIdCnt++
+    });
+  }
+
+  feedPolygonData(ev:any, polygons:google.maps.PolygonOptions[]) {
+    polygons.forEach((p:google.maps.PolygonOptions) => {
+      this.generatePolygon(p);
+    })
+  }
+  
+  checkPointInPolys(latLng:google.maps.LatLng){
+    return this.polygons.map((p:google.maps.Polygon) => {
+      return google.maps.geometry.poly.containsLocation(latLng, p);
+    })
   }
 
   generateMarker(m:MarkerData) {
@@ -106,6 +136,8 @@ class ReactMap extends TR.Component<MapProps,MapState> {
 
     $(document).on('map:NewDirections', this.displayDirections);
     $(document).on('markerData', this.feedMarkerData);
+    $(document).on('map:NewPolygon', this.feedPolygonData);
+    $(document).on('map:IsPointInPoly', this.checkPointInPolys);
 
     setTimeout(()=> {
       var gMap:google.maps.Map = new google.maps.Map(this.getDOMNode(), mapOptions);
@@ -121,6 +153,8 @@ class ReactMap extends TR.Component<MapProps,MapState> {
   componentWillUnmount() {
     $(document).off('map:NewDirections');
     $(document).off('markerData');
+    $(document).off('map:NewPolygon');
+    $(document).off('map:IsPointInPoly');
   }
 
   render() {
@@ -189,7 +223,7 @@ export var example = (el:HTMLElement, cb?:() => void) => {
     labelClass: 'marker' // the CSS class for the label
   };
   React.render(
-    React.createElement('div', {className:''},
+    React.createElement('div', {className: ''},
       React.createElement(Map, {
         mData: [mData],
         mapOptions: mapOptions
