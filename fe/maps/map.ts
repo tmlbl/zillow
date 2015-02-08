@@ -225,7 +225,7 @@ export var example = (el:HTMLElement, cb?:() => void) => {
       }
     },
     {
-      id: 'school',
+      id: 'Schools',
       tooltip: 'School',
       src: 'university',
       onClick: (e) => {
@@ -245,7 +245,7 @@ export var example = (el:HTMLElement, cb?:() => void) => {
       }
     },
     {
-      id: 'grocery',
+      id: 'Grocery Stores',
       tooltip: 'Grocery Store',
       src: 'shopping-cart',
       onClick: (e)=> {
