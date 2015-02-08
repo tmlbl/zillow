@@ -1240,8 +1240,10 @@ footer{
 	float:left;
 }
 .to-top-holder {
+	border-top: 1px solid #555;
 	float:left;
-	width:35%;
+	/*width:35%;   return to this value when adding partner logos */
+	width: 100%;
 	padding:75px 0;
 }
 /*------ portfolio - ------------------------------------------------*/

@@ -8,6 +8,7 @@ import $ = require('jquery');
 import Places = require('./places');
 import Icons = require('../misc/icon');
 import ToggleList = require('../list/toggle-list');
+import mapData = require('./mapDataset')
 
 declare var MarkerWithLabel:any;
 
@@ -96,16 +97,23 @@ class ReactMap extends TR.Component<MapProps,MapState> {
   }
 
   generateMarker(m:MarkerData) {
-    var mark = new MarkerWithLabel(m).setMap(this.state.gMap);
-    this.markers.push({
-      marker: mark,
-      id: m.id
-    });
+      var mark = new MarkerWithLabel(m);
+      mark.setMap(this.state.gMap);
+      this.markers.push({
+        marker: mark,
+        id: m.id
+      });
+  }
+
+  clearMarkers() {
+    while (this.markers.length > 0) {
+      this.markers.pop().marker.setMap(null);
+    }
   }
 
   feedMarkerData(ev:any, markers:any) {
     var self = this;
-    console.log('Called feedMarkerData', markers);
+    this.clearMarkers();
     markers.forEach(function (marker) {
       self.generateMarker(marker);
     });
@@ -173,24 +181,27 @@ export var Map = TR.createClass(ReactMap);
 export var example = (el:HTMLElement, cb?:() => void) => {
   var exampleButtons:Icons.IconProps[] = [
     {
-      id: 'hospital',
+      id: 'Multi Family',
       src: 'h-square',
       onClick: ()=> {
-        console.log('hospital');
+        console.log('Loading multi-family home data...');
+        mapData.mapMultiFam();
       }
     },
     {
-      id: 'parks',
-      src: 'tree',
-      onClick: ()=> {
-        console.log('parks');
+      id: 'Public Housing',
+      src: 'home',
+      onClick: () => {
+        console.log('Loading public housing data...');
+        mapData.mapPublicHousing();
       }
     },
     {
-      id: 'grocery',
+      id: 'Housing Counseling',
       src: 'shopping-cart',
       onClick: ()=> {
-        console.log('grocery');
+        console.log('Loading housing counseling data...');
+        mapData.mapHousingCounseling();
       }
     },
     {

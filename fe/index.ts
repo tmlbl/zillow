@@ -7,7 +7,6 @@ import $ = require('jquery');
 import MapLookUp = require('maps/mapLookUp');
 import Map = require('maps/map');
 import Places = require('maps/places');
-import Loader = require('maps/mapDataset');
 import List = require('list/list')
 import TL = require('list/toggle-list');
 
@@ -37,7 +36,6 @@ function initialize() {
 
     });
   });
-  Loader.mapProjects();
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
