@@ -137,10 +137,8 @@ class ReactMap extends TR.Component<MapProps,MapState> {
   }
 
   componentDidMount() {
-    var mapOptions = {
-      center: this.mapCenterLatLng(),
-      zoom: this.props.mapOptions.zoom
-    };
+    var mapOptions = this.props.mapOptions;
+    mapOptions['center'] = this.mapCenterLatLng();
 
     $(document).on('map:NewDirections', this.displayDirections);
     $(document).on('markerData', this.feedMarkerData);
@@ -179,6 +177,7 @@ class ReactMap extends TR.Component<MapProps,MapState> {
 export var Map = TR.createClass(ReactMap);
 
 export var example = (el:HTMLElement, cb?:() => void) => {
+  console.error(el);
   var exampleButtons:Icons.IconProps[] = [
     {
       id: 'Multi Family',
@@ -221,7 +220,12 @@ export var example = (el:HTMLElement, cb?:() => void) => {
   ];
   var mapOptions = {
     zoom: 10,
-    center: new google.maps.LatLng(47.6097, -122.3331)
+    center: new google.maps.LatLng(47.6097, -122.3331),
+    scrollwheel: false,
+    navigationControl: false,
+    mapTypeControl: false,
+    scaleControl: false,
+    draggable: false
   };
   var mData:MarkerData = {
     position: new google.maps.LatLng(47.6097, -122.3331),

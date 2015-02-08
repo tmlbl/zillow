@@ -7,6 +7,7 @@ interface DataLoader {
     getProjects: (cb: (data: any[]) => any) => void;
     getMultiFamily: (cb: (data: any[]) => any) => void;
     getHousingCounseling: (cb: (data: any[]) => any) => void;
+    getHousingAuthorities: (cb: (data: any[]) => any) => void;
 }
 
 export function mapMultiFam() {

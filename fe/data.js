@@ -47,4 +47,15 @@ Data.getHousingCounseling = function (cb) {
   });
 };
 
+Data.getHousingAuthorities = function (cb) {
+  new GovClient(GovClient.HousingAuthorities).where('STD_CITY=\'Seattle\'', function (err, res) {
+    console.log(res.features[0]);
+    cb(_.map(res.features, function (feature) {
+      return {
+        geometry: feature.geometry
+      };
+    }));
+  });
+};
+
 window.Data = Data;
