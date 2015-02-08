@@ -185,7 +185,7 @@ var placeToMarker = (p:google.maps.places.PlaceResult[]):MarkerData[] => {
       draggable: false,
       raiseOnDrag: false,
       icon: ' ',
-      toolTip:place.name,
+      toolTip: '<p>' + place.name + '</p><p>' + place.formatted_phone_number + '</p>',
       labelContent: G.blueHouse,
       labelAnchor: new google.maps.Point(10, 10),
       labelClass: 'marker'

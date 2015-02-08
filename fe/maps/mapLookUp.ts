@@ -152,4 +152,3 @@ class App extends TR.Component<MapAppProps,MapAppStates> {
 }
 
 export var MapApp = TR.createClass(App);
-
