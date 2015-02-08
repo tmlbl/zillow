@@ -64,7 +64,8 @@ export function mapHousingCounseling() {
                 draggable: false,
                 raiseOnDrag: false,
                 icon: ' ',
-                labelContent: '<i class="fa fa-home" style="color:purple;"></i>',
+                labelContent: '<i class="fa fa-home" style="color:purple;"' +
+                    'class="tooltip" title="' + datum.name + '"></i>',
                 labelAnchor: new google.maps.Point(0, 0),
                 labelClass: 'marker'
             };

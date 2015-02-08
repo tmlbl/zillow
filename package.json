@@ -36,6 +36,7 @@
     "reactify": "^0.17.1",
     "request": "^2.53.0",
     "serve-static": "^1.8.1",
+    "tooltipster": "^1.0.9",
     "typed-react": "^3.2.0",
     "xls-to-json": "^0.3.2",
     "xlsjs": "^0.7.2",

@@ -65,8 +65,8 @@ class ReactMap extends TR.Component<MapProps,MapState> {
   private centerLng:number = null;
 
   static defaultStyle = {
-    height: '800px',
-    width: '800px'
+    height: window.innerHeight,
+    width: window.innerWidth
   };
 
   displayDirections(e:JQueryEventObject, dir:google.maps.DirectionsResult) {

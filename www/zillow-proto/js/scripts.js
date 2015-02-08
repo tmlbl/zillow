@@ -52,6 +52,10 @@ function initHackathon() {
     $('#video-container').fadeTo(300, 0.69, function() {
       // Animation complete.
       $(this).css("visibility", "visible");
+      setInterval(function () {
+        console.log('Initing tooltips');
+        $('.tooltip').tooltipster();
+      }, 500);
     });
   });
 
