@@ -59,8 +59,7 @@ export var generateMapToolTip = (marker:any, text:any) => {
     //,pixelOffset: new google.maps.Size(-140, 0)
     ,zIndex: null
     ,boxStyle: {
-      background: "url('tipbox.gif') no-repeat"
-      ,opacity: 0.95
+       opacity: 0.95
       ,maxWidth: "200px"
     }
     ,closeBoxURL:""

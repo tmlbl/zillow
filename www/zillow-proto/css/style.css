@@ -2683,3 +2683,11 @@ h3.habitat {
 .active-map-markers{
     color: #0064cd;
 }
+
+.marker-out{
+    color: red;
+}
+
+.marker-in {
+    color: green;
+}

@@ -10,6 +10,7 @@ import Icons = require('../misc/icon');
 import ToggleList = require('../list/toggle-list');
 import mapData = require('./mapDataset');
 import TT = require('./tooltips');
+import G = require('../globals');
 
 declare var MarkerWithLabel:any;
 
@@ -87,13 +88,14 @@ class ReactMap extends TR.Component<MapProps,MapState> {
     })
   }
 
-  checkPointInPolys(ev:any, latLng:google.maps.LatLng) {
+  checkPointInPolys(latLng:google.maps.LatLng) {
     return this.polygons.map((p:Polygon) => {
       return google.maps.geometry.poly.containsLocation(latLng, p.polygon);
     })
   }
 
   generateMarker(m:MarkerData) {
+    m.labelContent  = this.checkPointInPolys(m.position)[0] ? G.greenHouse : G.blueHouse;
     var mark = new MarkerWithLabel(m);
     TT.generateMapToolTip(mark, m.toolTip);
     mark.setMap(this.state.gMap);
@@ -141,7 +143,6 @@ class ReactMap extends TR.Component<MapProps,MapState> {
     $(document).on('map:NewDirections', this.displayDirections);
     $(document).on('markerData', this.feedMarkerData);
     $(document).on('map:NewPolygon', this.feedPolygonData);
-    $(document).on('map:IsPointInPoly', this.checkPointInPolys);
 
     setTimeout(()=> {
       window['gMap'] = gMap = new google.maps.Map(this.getDOMNode(), mapOptions);
@@ -185,8 +186,7 @@ var placeToMarker = (p:google.maps.places.PlaceResult[]):MarkerData[] => {
       raiseOnDrag: false,
       icon: ' ',
       toolTip:place.name,
-      labelContent: '<object style="width:20px; height:20px;" type="image/svg+xml"' +
-      'data="images/zillow-logo-mask.svg"></object>',
+      labelContent: G.blueHouse,
       labelAnchor: new google.maps.Point(10, 10),
       labelClass: 'marker'
     }
