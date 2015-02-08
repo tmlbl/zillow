@@ -90,9 +90,9 @@ class ReactMap extends TR.Component<MapProps,MapState> {
     })
   }
   
-  checkPointInPolys(latLng:google.maps.LatLng){
-    return this.polygons.map((p:google.maps.Polygon) => {
-      return google.maps.geometry.poly.containsLocation(latLng, p);
+  checkPointInPolys(ev:any, latLng:google.maps.LatLng){
+    return this.polygons.map((p:Polygon) => {
+      return google.maps.geometry.poly.containsLocation(latLng, p.polygon);
     })
   }
 

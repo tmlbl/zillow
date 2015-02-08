@@ -28,6 +28,7 @@ function initialize() {
             strokeColor: '#FF0000',
             strokeOpacity: 0.8,
             strokeWeight: 2,
+            //visible: false,
             fillColor: '#FF0000',
             fillOpacity: 0.35
           }]
