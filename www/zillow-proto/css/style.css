@@ -134,7 +134,7 @@ p {
 	color:#fff;
 	margin-left:-40px;
 	margin-top:-40px;
-	line-height:80px;
+	line-height:100px;
 	-webkit-animation: k3d linear infinite 2s;
 	-moz-animation: k3d linear infinite 2s;
 	-ms-animation: k3d linear infinite 2s;
@@ -2623,8 +2623,7 @@ nav  a{
 }
 
 .add-address {
-	text-align: left;
-	margin-left: 30px;
+
 }
 
 .add-address > label {
@@ -2640,15 +2639,15 @@ nav  a{
 }
 
 h3.habitat {
-	margin-left: 20px;
+	text-align: center;
 }
 
-.add-address > button {
+.add-address-button {
 	border-style: none;
 	border-radius: 4px;
 	background-color: #0064CD;
 	cursor: pointer;
-	padding: 10px;
+	padding: 16px;
 	color: white;
 }
 
@@ -2682,4 +2681,14 @@ h3.habitat {
 /* Jake Styling*/
 .active-map-markers{
     color: #0064cd;
+}
+
+
+/*info form */
+.info-form {
+	padding: 40px 60px;
+}
+
+.info-form h3 {
+	text-align: center;
 }
