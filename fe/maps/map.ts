@@ -110,6 +110,7 @@ class ReactMap extends TR.Component<MapProps,MapState> {
   }
 
   feedMarkerData(ev:any, markers:any) {
+    console.log('Received data', markers);
     var self = this;
     this.clearMarkers();
     markers.forEach(function (marker) {
@@ -184,7 +185,7 @@ var placeToMarker = (p:google.maps.places.PlaceResult[]):MarkerData[] => {
       draggable: false,
       raiseOnDrag: false,
       icon: ' ',
-      toolTip:place.name,
+      toolTip: '<p>' + place.name + '</p><p>' + place.formatted_phone_number + '</p>',
       labelContent: '<object style="width:20px; height:20px;" type="image/svg+xml"' +
       'data="images/zillow-logo-mask.svg"></object>',
       labelAnchor: new google.maps.Point(10, 10),

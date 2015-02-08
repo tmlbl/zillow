@@ -81,4 +81,4 @@ export var generateMapToolTip = (marker:any, text:any) => {
   google.maps.event.addListener(marker, "mouseout", function (e) {
     tooltip.close(window['gMap'], this);
   });
-}
+};
