@@ -95,7 +95,7 @@ class ReactMap extends TR.Component<MapProps,MapState> {
   }
 
   generateMarker(m:MarkerData) {
-    m.labelContent  = this.checkPointInPolys(m.position)[0] ? G.greenHouse : G.blueHouse;
+    m.labelContent = this.checkPointInPolys(m.position)[0] ? G.greenHouse : G.blueHouse;
     var mark = new MarkerWithLabel(m);
     TT.generateMapToolTip(mark, m.toolTip);
     mark.setMap(this.state.gMap);
@@ -185,7 +185,7 @@ var placeToMarker = (p:google.maps.places.PlaceResult[]):MarkerData[] => {
       draggable: false,
       raiseOnDrag: false,
       icon: ' ',
-      toolTip: '<p>' + place.name + '</p><p>' + place.formatted_phone_number + '</p>',
+      toolTip: '<p>' + place.name + '</p><p>' + (place.formatted_phone_number ? place.formatted_phone_number : '') + '</p>',
       labelContent: G.blueHouse,
       labelAnchor: new google.maps.Point(10, 10),
       labelClass: 'marker'
@@ -282,7 +282,7 @@ export var example = (el:HTMLElement, cb?:() => void) => {
     draggable: false,
     raiseOnDrag: false,
     icon: ' ',
-    toolTip:'herp derp',
+    toolTip: 'herp derp',
     labelContent: '<object style="width:20px; height:20px;" type="image/svg+xml"' +
     'data="images/zillow-logo-mask.svg">, class="tooltip" title="' + 'herpderp' + '"></object>',
     labelAnchor: new google.maps.Point(10, 10),

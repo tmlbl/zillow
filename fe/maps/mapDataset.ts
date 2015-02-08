@@ -22,8 +22,8 @@ export function mapMultiFam() {
                 draggable: false,
                 raiseOnDrag: false,
                 icon: ' ',
-                toolTip: '<p>' + datum.name + '</p><p>' + datum['desc'] +
-                    '</p><p>' + datum.number + '</p>',
+                toolTip: '<p>' + datum.name + '</p><p>' + (datum['desc'] ? datum['desc'] :'')  +
+                    '</p><p>' + (datum.number ? datum.number : '') + '</p>',
                 labelContent: '<object style="width:20px; height:20px;" type="image/svg+xml"data="images/zillow-logo-mask.svg"></object>',
                 labelAnchor: new google.maps.Point(10, 10),
                 labelClass: 'marker'
@@ -45,7 +45,7 @@ export function mapPublicHousing() {
                 draggable: false,
                 raiseOnDrag: false,
                 icon: ' ',
-                toolTip: '<p>' + datum.name + '</p><p>' + datum.number + '</p>',
+                toolTip: '<p>' + datum.name + '</p><p>' + (datum.number? datum.number : '') + '</p>',
                 labelContent: '<object style="width:20px; height:20px;" type="image/svg+xml"data="images/zillow-logo-mask.svg"></object>',
                 labelAnchor: new google.maps.Point(10, 10),
                 labelClass: 'marker'
@@ -67,7 +67,7 @@ export function mapHousingCounseling() {
                 draggable: false,
                 raiseOnDrag: false,
                 icon: ' ',
-                toolTip: '<p>' + datum.name + '</p><p>' + datum.phone + '</p>',
+                toolTip: '<p>' + datum.name + '</p><p>' + (datum.phone ? datum.phone: '') + '</p>',
                 labelContent: '<object style="width:20px; height:20px;" type="image/svg+xml"data="images/zillow-logo-mask.svg"></object>',
                 labelAnchor: new google.maps.Point(10, 10),
                 labelClass: 'marker'
