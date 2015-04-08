@@ -5,9 +5,6 @@
   "path": "typings",
   "bundle": "typings/tsd.d.ts",
   "installed": {
-    "googlemaps/google.maps.d.ts": {
-      "commit": "fd7728a4e622d1ea058127393d6b8e45badaefc1"
-    },
     "react/react.d.ts": {
       "commit": "8e614160f9ddea13d7b78607df39ac931e233090"
     },

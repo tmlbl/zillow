@@ -22,3 +22,5 @@ fe/list/toggle-list.js
 fe/misc/icon.js
 
 !typings/googlemaps/google.maps.d.ts
+!typings/app.d.ts
+!typings/google.maps.d.ts
