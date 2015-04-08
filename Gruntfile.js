@@ -6,7 +6,7 @@ module.exports = function (grunt) {
         browserify: {
             dev: {
                 src: 'fe/index.js',
-                dest: 'www/index.js',
+                dest: 'www/zillow-proto/index.js',
                 options:{
                     browserifyOptions: {
                         paths:['node_modules','fe/'],
@@ -19,7 +19,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 src: 'fe/index.js',
-                dest: 'www/index.js',
+                dest: 'www/zillow-proto/index.js',
                 options:{
                     browserifyOptions: {
                         paths:['node_modules','fe/'],
@@ -32,7 +32,7 @@ module.exports = function (grunt) {
             },
             data: {
                 src: 'fe/data.js',
-                dest: 'www/data.js',
+                dest: 'www/zillow-proto/data.js',
                 options:{
                     browserifyOptions: {
                         paths:['node_modules','fe/'],
@@ -78,8 +78,7 @@ module.exports = function (grunt) {
 
     // Load the npm installed tasks
 
-    grunt.registerTask('default', ['ts', 'browserify:dist', 'watch']);
-    grunt.registerTask('data', ['browserify:data', 'watch']);
-    grunt.registerTask('build', ['ts', 'browserify:dist']);
+    grunt.registerTask('default', ['ts', 'browserify:dist', 'browserify:data', 'watch']);
+    grunt.registerTask('build', ['ts', 'browserify:dist', 'browserify:data']);
 
 };
